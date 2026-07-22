@@ -45,12 +45,12 @@ Kaetram 是一个功能完整的 MMORPG 游戏引擎，专为希望进入游戏�
 
 | 技术 | 版本 | 用途 |
 |------|------|------|
-| **Node.js** | ^18.14.1 \| ^20.0.0 | 运行时环境 |
+| **Node.js** | ^18.14.1 \| ^20.0.0 \| ^22.0.0 | 运行时环境 |
 | **TypeScript** | ^5.2.2 | 全栈类型系统 |
-| **uWebSockets.js** | latest | 高性能 C++ WebSocket 服务器 |
+| **uWebSockets.js** | v20.63.0 | 高性能 C++ WebSocket 服务器 |
 | **Express** | ^4.18.2 | REST HTTP API |
 | **MongoDB** | ^6.0.0 | 数据库驱动（官方原生驱动，非 Mongoose）|
-| **tsx** | ^3.12.10 | TypeScript 直接执行（开发模式）|
+| **tsx** | ^4.19.0 | TypeScript 直接执行（开发模式）|
 | **esbuild** | ^0.19.2 | 生产构建打包 |
 | **discord.js** | ^14.13.0 | Discord 机器人集成 |
 | **nodemailer** | ^6.9.5 | SMTP 邮件发送（Hub）|
@@ -73,7 +73,7 @@ Kaetram 是一个功能完整的 MMORPG 游戏引擎，专为希望进入游戏�
 | **SCSS** | ^1.66.1 | 样式预处理 |
 | **vite-plugin-pwa** | ^0.16.4 | PWA 支持（离线访问、桌面安装）|
 | **astro-i18n-aut** | ^0.4.23 | 国际化路由 |
-| **i18next** | ^23.5.1 | 国际化框架（8 种语言）|
+| **i18next** | ^23.5.1 | 国际化框架（2 种语言）|
 
 ### 开发工具
 
@@ -205,7 +205,7 @@ scss/（52个 SCSS 文件）
 │   └── impl/（54个具体数据包实现）
 ├── database/
 │   └── mongodb/（mongodb.ts、creator.ts、loader.ts）
-├── i18n/（de/en/es/fr/pt/ro/ru/tl 8种语言）
+├── i18n/（en/zh 2种语言）
 └── types/（18个 TypeScript 类型定义）
 ```
 
@@ -263,7 +263,7 @@ src/
 | **A* 寻路** | 客户端 `pathfinder.ts` + `astar.ts` 路径计算 |
 | **区域系统** | 服务端基于 Region 的可见性管理，支持区域缓存 |
 | **4MB 世界地图** | Tiled 格式，支持动态区域/动态图块 |
-| **多语言支持** | i18next，支持 `de/en/es/fr/pt/ro/ru/tl` 8种语言 |
+| **多语言支持** | i18next，支持 `en/zh` 2种语言 |
 | **PWA** | 离线访问、桌面安装、横屏锁定 |
 | **移动端** | 虚拟摇杆（joystick.ts）、设备检测（detect.ts）|
 | **多服务器** | Hub 模式支持多游戏服务器实例负载分布 |
@@ -274,7 +274,7 @@ src/
 
 ## 环境要求
 
-- **Node.js**：`^18.14.1` 或 `^20.0.0`
+- **Node.js**：`^18.14.1`、`^20.0.0` 或 `^22.0.0`
 - **Yarn**：4.0.0（通过 Corepack 启用）
 - **MongoDB**：本地或远程 MongoDB 实例（可选，开发模式可跳过）
 
@@ -616,18 +616,12 @@ SMTP_PASSWORD=your-app-password
 
 ## 国际化
 
-支持 8 种语言，语言文件位于 `packages/common/i18n/`：
+支持 2 种语言，语言文件位于 `packages/common/i18n/`：
 
 | 代码 | 语言 |
 |------|------|
 | `en` | English（默认）|
-| `de` | Deutsch |
-| `es` | Español |
-| `fr` | Français |
-| `pt` | Português |
-| `ro` | Română |
-| `ru` | Русский |
-| `tl` | Filipino |
+| `zh` | 简体中文 |
 
 ---
 

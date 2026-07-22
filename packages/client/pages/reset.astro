@@ -1,15 +1,17 @@
 ---
 import DefaultLayout from '../layouts/default.astro';
+
 import '../scss/main.scss';
+import { t } from '@kaetram/common/i18n';
 ---
 
 <script src="../src/reset.ts"></script>
 
-<DefaultLayout title="Reset Password">
+<DefaultLayout title={t('misc:UI_RESET_PASSWORD')}>
     <div id="intro">
         <section id="parchment" class="slice-menu">
             <article id="reset-password">
-                <h1 class="title-decoration">Reset Password</h1>
+                <h1 class="title-decoration">{t('misc:UI_RESET_PASSWORD')}</h1>
 
                 <form onsubmit={'return false'}>
                     <input
@@ -17,8 +19,8 @@ import '../scss/main.scss';
                         id="password-input"
                         class="stroke slice-input"
                         name="player-password"
-                        placeholder="Password"
-                        aria-label="Password"
+                        placeholder={t('misc:UI_PASSWORD')}
+                        aria-label={t('misc:UI_PASSWORD')}
                         maxlength="64"
                         autocomplete="off"
                     />
@@ -27,8 +29,8 @@ import '../scss/main.scss';
                         id="password-confirm-input"
                         class="stroke slice-input"
                         name="player-password"
-                        placeholder="Confirm Password"
-                        aria-label="Password"
+                        placeholder={t('misc:UI_CONFIRM_PASSWORD')}
+                        aria-label={t('misc:UI_CONFIRM_PASSWORD')}
                         maxlength="64"
                         autocomplete="off"
                     />
@@ -37,13 +39,13 @@ import '../scss/main.scss';
 
                     <div>
                         <button
-                            title="Accept Reset"
-                            aria-label="Accept Reset"
+                            title={t('misc:UI_ACCEPT_RESET')}
+                            aria-label={t('misc:UI_ACCEPT_RESET')}
                             type="button"
                             id="confirm-reset"
                             class="stroke slice-button"
                         >
-                            ACCEPT
+                            {t('misc:UI_ACCEPT')}
                         </button>
                     </div>
                 </form>

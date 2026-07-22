@@ -4,13 +4,7 @@ import { t, getLanguage } from '@kaetram/common/i18n';
 let currentLanguage = getLanguage(),
     languages = [
         { locale: 'en', name: 'English' },
-        { locale: 'de', name: 'Deutsch' },
-        { locale: 'es', name: 'Español' },
-        { locale: 'fr', name: 'Français' },
-        { locale: 'pt', name: 'Português' },
-        { locale: 'ro', name: 'Română' },
-        { locale: 'ru', name: 'Русский' },
-        { locale: 'tl', name: 'Tagalog'}
+        { locale: 'zh', name: '简体中文' }
     ];
 ---
 
@@ -25,8 +19,8 @@ let currentLanguage = getLanguage(),
                     id="login-name-input"
                     class="stroke slice-input"
                     name="player-name"
-                    placeholder="Username"
-                    aria-label="Username"
+                    placeholder={t('misc:UI_USERNAME')}
+                    aria-label={t('misc:UI_USERNAME')}
                     maxlength="32"
                     autocomplete="off"
                 />
@@ -35,8 +29,8 @@ let currentLanguage = getLanguage(),
                     id="login-password-input"
                     class="stroke slice-input"
                     name="player-password"
-                    placeholder="Password"
-                    aria-label="Password"
+                    placeholder={t('misc:UI_PASSWORD')}
+                    aria-label={t('misc:UI_PASSWORD')}
                     maxlength="64"
                     autocomplete="off"
                 />
@@ -48,42 +42,42 @@ let currentLanguage = getLanguage(),
                         <input type="checkbox" aria-labelledby="remember-me-text" />
                         <span class="checkmark"></span>
 
-                        <span id="remember-me-text">Remember Me</span>
+                        <span id="remember-me-text">{t('misc:UI_REMEMBER_ME')}</span>
                     </label>
                     <label id="guest" class="check">
                         <input type="checkbox" aria-labelledby="guest-text" />
                         <span class="checkmark"></span>
 
-                        <span id="guest-text">Play as a guest</span>
+                        <span id="guest-text">{t('misc:UI_PLAY_AS_GUEST')}</span>
                     </label>
                 </div>
 
                 <div class="button-row">
                     <button
-                        title="Login"
-                        aria-label="Login"
+                        title={t('misc:UI_LOGIN')}
+                        aria-label={t('misc:UI_LOGIN')}
                         type="submit"
                         id="login"
                         class="stroke slice-button"
                         disabled
                     >
-                        LOGIN
+                        {t('misc:UI_LOGIN')}
                     </button>
                     <button
-                        title="New Account"
-                        aria-label="New Account"
+                        title={t('misc:UI_NEW_ACCOUNT')}
+                        aria-label={t('misc:UI_NEW_ACCOUNT')}
                         type="button"
                         id="new-account"
                         class="stroke slice-button"
                     >
-                        NEW ACCOUNT
+                        {t('misc:UI_NEW_ACCOUNT')}
                     </button>
                 </div>
             </form>
         </article>
 
         <article id="create-character">
-            <h1 class="title-decoration">New Character</h1>
+            <h1 class="title-decoration">{t('misc:UI_NEW_CHARACTER')}</h1>
 
             <form onsubmit={'return false'}>
                 <input
@@ -91,8 +85,8 @@ let currentLanguage = getLanguage(),
                     id="register-name-input"
                     class="stroke slice-input"
                     name="player-name"
-                    placeholder="Username"
-                    aria-label="Username"
+                    placeholder={t('misc:UI_USERNAME')}
+                    aria-label={t('misc:UI_USERNAME')}
                     maxlength="32"
                     autocomplete="off"
                 />
@@ -101,8 +95,8 @@ let currentLanguage = getLanguage(),
                     id="register-password-input"
                     class="stroke slice-input"
                     name="player-password"
-                    placeholder="Password"
-                    aria-label="Password"
+                    placeholder={t('misc:UI_PASSWORD')}
+                    aria-label={t('misc:UI_PASSWORD')}
                     maxlength="64"
                     autocomplete="off"
                 />
@@ -111,8 +105,8 @@ let currentLanguage = getLanguage(),
                     id="register-password-confirmation-input"
                     class="stroke slice-input"
                     name="player-password2"
-                    placeholder="Confirm Password"
-                    aria-label="Confirm Password"
+                    placeholder={t('misc:UI_CONFIRM_PASSWORD')}
+                    aria-label={t('misc:UI_CONFIRM_PASSWORD')}
                     maxlength="64"
                     autocomplete="off"
                 />
@@ -121,8 +115,8 @@ let currentLanguage = getLanguage(),
                     id="register-email-input"
                     class="stroke slice-input"
                     name="player-email"
-                    placeholder="Email Address"
-                    aria-label="Email Address"
+                    placeholder={t('misc:UI_EMAIL')}
+                    aria-label={t('misc:UI_EMAIL')}
                     maxlength="64"
                     autocomplete="off"
                 />
@@ -131,22 +125,22 @@ let currentLanguage = getLanguage(),
 
                 <div class="button-row">
                     <button
-                        title="Cancel"
-                        aria-label="Cancel"
+                        title={t('misc:UI_CANCEL')}
+                        aria-label={t('misc:UI_CANCEL')}
                         type="button"
                         id="cancel-register"
                         class="stroke slice-button"
                     >
-                        CANCEL
+                        {t('misc:UI_CANCEL')}
                     </button>
                     <button
-                        title="Play"
-                        aria-label="Play"
+                        title={t('misc:UI_PLAY')}
+                        aria-label={t('misc:UI_PLAY')}
                         type="submit"
                         id="play"
                         class="stroke slice-button"
                     >
-                        PLAY
+                        {t('misc:UI_PLAY')}
                     </button>
                 </div>
             </form>
@@ -155,7 +149,7 @@ let currentLanguage = getLanguage(),
         <article id="reset-password">
             <h1>
                 <span class="left-ornament"></span>
-                 Reset Password
+                 {t('misc:UI_RESET_PASSWORD')}
                 <span class="right-ornament"></span>
             </h1>
 
@@ -165,8 +159,8 @@ let currentLanguage = getLanguage(),
                     id="email-reset-input"
                     class="stroke slice-input"
                     name="player-email"
-                    placeholder="Email Address"
-                    aria-label="Email Address"
+                    placeholder={t('misc:UI_EMAIL')}
+                    aria-label={t('misc:UI_EMAIL')}
                     maxlength="32"
                     autocomplete="off"
                 />
@@ -175,22 +169,22 @@ let currentLanguage = getLanguage(),
 
                 <div class="button-row">
                     <button
-                        title="Cancel"
-                        aria-label="Cancel"
+                        title={t('misc:UI_CANCEL')}
+                        aria-label={t('misc:UI_CANCEL')}
                         type="button"
                         id="cancel-forget"
                         class="stroke slice-button"
                     >
-                        CANCEL
+                        {t('misc:UI_CANCEL')}
                     </button>
                     <button
-                        title="Submit"
-                        aria-label="Submit"
+                        title={t('misc:UI_CONTINUE')}
+                        aria-label={t('misc:UI_CONTINUE')}
                         type="submit"
                         id="continue-forget"
                         class="stroke slice-button"
                     >
-                        CONTINUE
+                        {t('misc:UI_CONTINUE')}
                     </button>
                 </div>
             </form>
@@ -199,7 +193,7 @@ let currentLanguage = getLanguage(),
         <article id="world-select">
             <h1>
                 <span class="left-ornament"></span>
-                 World Select
+                 {t('misc:UI_WORLD_SELECT')}
                 <span class="right-ornament"></span>
             </h1>
 
@@ -208,46 +202,46 @@ let currentLanguage = getLanguage(),
 
                 <div class="button-row">
                     <button
-                        title="Cancel"
-                        aria-label="Cancel"
+                        title={t('misc:UI_CANCEL')}
+                        aria-label={t('misc:UI_CANCEL')}
                         type="button"
                         id="cancel-worlds"
                         class="stroke slice-button"
                     >
-                        CANCEL
+                        {t('misc:UI_CANCEL')}
                     </button>
                     <button
-                        title="Continue"
-                        aria-label="Continue"
+                        title={t('misc:UI_CONTINUE')}
+                        aria-label={t('misc:UI_CONTINUE')}
                         type="submit"
                         id="continue-worlds"
                         class="stroke slice-button"
                     >
-                        CONTINUE
+                        {t('misc:UI_CONTINUE')}
                     </button>
                 </div>
             </form>
         </article>
 
         <article id="credits">
-            <h1 class="title-decoration">Credits</h1>
+            <h1 class="title-decoration">{t('misc:UI_CREDITS')}</h1>
 
             <p>
                 <br />
-                 Special thanks to
+                 {t('misc:UI_CREDITS_THANKS')}
                 <a
                     rel="noopener noreferrer"
                     class="clickable"
                     target="_blank"
                     href="https://www.littleworkshop.fr/">Little Workshop</a
                 >
-                 for the pixel art,
+                 {t('misc:UI_CREDITS_PIXEL')}
                 <br />
                 <br />
-                 and the Asky Team.
+                 {t('misc:UI_CREDITS_AND_TEAM')}
                 <br />
                 <br />
-                 More pixel assets by
+                 {t('misc:UI_CREDITS_MORE_ASSETS')}
                 <a
                     rel="noopener noreferrer"
                     class="clickable"
@@ -275,7 +269,7 @@ let currentLanguage = getLanguage(),
                 >, &amp; Boo
                 <br />
                 <br />
-                 Music by
+                 {t('misc:UI_CREDITS_MUSIC')}
                 <a
                     rel="noopener noreferrer"
                     class="clickable"
@@ -303,21 +297,15 @@ let currentLanguage = getLanguage(),
             </p>
 
             <div class="close-about">
-                <span>-- Click anywhere to close --</span>
+                <span>{t('misc:UI_CLICK_TO_CLOSE')}</span>
             </div>
         </article>
 
         <article id="about">
-            <h1 class="title-decoration">About</h1>
+            <h1 class="title-decoration">{t('misc:UI_ABOUT')}</h1>
 
             <p>
-                Kaetram is a browser-based 2D MMORPG adventure. You play as an adventurer amongst
-                others and explore the world of Kaetram. Originally started as a fork of
-                BrowserQuest, Kaetram has evolved into its own game. In honour to the original idea,
-                the assets have been preserved and expanded upon. We are one of a few open-source
-                community driven game projects. We are always looking for assistance in terms of
-                programming, graphic artists, and/or music composers. Our source-code can be found
-                on our
+                {t('misc:UI_ABOUT_TEXT')}
                 <a target="_blank" href="https://github.com/Kaetram/Kaetram-Open"
                     >GitHub Repository</a
                 >. If you would like to stay up-to-date with the project, make sure you join our
@@ -325,25 +313,24 @@ let currentLanguage = getLanguage(),
             </p>
 
             <div class="close-about">
-                <span>-- Click anywhere to close --</span>
+                <span>{t('misc:UI_CLICK_TO_CLOSE')}</span>
             </div>
         </article>
 
         <article id="git">Structure this later</article>
 
         <article id="death">
-            <h1>You have died...</h1>
+            <h1>{t('misc:UI_YOU_HAVE_DIED')}</h1>
             <button
-                title="Respawn"
+                title={t('misc:UI_RESPAWN')}
                 id="respawn"
-                title="Respawn"
-                aria-label="Respawn"
-                class="stroke slice-button">RESPAWN</button
+                aria-label={t('misc:UI_RESPAWN')}
+                class="stroke slice-button">{t('misc:UI_RESPAWN')}</button
             >
         </article>
 
         <span class="loader" hidden>
-            Connecting<span class="loader-dot">.</span><span class="loader-dot">.</span><span
+            {t('misc:UI_CONNECTING')}<span class="loader-dot">.</span><span class="loader-dot">.</span><span
                 class="loader-dot">.</span
             >
         </span>
@@ -368,16 +355,16 @@ let currentLanguage = getLanguage(),
 
     <footer>
         <div id="about-link" class="clickable">
-            <span id="toggle-about">About</span>
+            <span id="toggle-about">{t('misc:UI_ABOUT')}</span>
         </div>
         <span>&ndash;</span>
         <div id="credits-link" class="clickable">
-            <span id="toggle-credits">Credits</span>
+            <span id="toggle-credits">{t('misc:UI_CREDITS')}</span>
         </div>
         <span>&ndash;</span>
         <div id="discord-link" class="clickable">
             <a class="footer-button" target="_blank" href="https://discord.gg/MmbGAaw">
-                <span>Discord</span>
+                <span>{t('misc:UI_DISCORD')}</span>
             </a>
         </div>
         <span>&ndash;</span>
@@ -387,18 +374,18 @@ let currentLanguage = getLanguage(),
                 target="_blank"
                 href="https://www.patreon.com/bePatron?u=29287394"
             >
-                <span>Patreon</span>
+                <span>{t('misc:UI_PATREON')}</span>
             </a>
         </div>
         <span>&ndash;</span>
         <div id="privacy" class="clickable">
             <a class="footer-button" href="/privacy/">
-                <span>Privacy</span>
+                <span>{t('misc:UI_PRIVACY')}</span>
             </a>
         </div>
         <span>&ndash;</span>
         <div id="reset" class="clickable">
-            <span id="toggle-reset-password">Reset Password</span>
+            <span id="toggle-reset-password">{t('misc:UI_RESET_PASSWORD')}</span>
         </div>
     </footer>
 </div>

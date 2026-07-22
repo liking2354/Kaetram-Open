@@ -5,7 +5,6 @@ import config from '@kaetram/common/config';
 import log from '@kaetram/common/util/log';
 import Stripe from 'stripe';
 import * as Sentry from '@sentry/node';
-import * as Tracing from '@sentry/tracing';
 import Utils from '@kaetram/common/util/utils';
 import { Modules } from '@kaetram/common/network';
 
@@ -14,7 +13,6 @@ import type Server from '../model/server';
 import type Models from './models';
 import type Mailer from './mailer';
 import type { ObjectId } from 'mongodb';
-import type { Integration } from '@sentry/types';
 import type { Request, Response, Express, Router } from 'express';
 import type {
     MobAggregate,
@@ -44,12 +42,6 @@ export default class API {
         // API must be initialized if the hub is enabled.
         if (apiEnabled) {
             app = express();
-
-            if (config.sentryDsn)
-                app.use(Sentry.Handlers.requestHandler())
-                    .use(Sentry.Handlers.tracingHandler())
-                    .use(Sentry.Handlers.errorHandler());
-
             app.use(express.urlencoded({ extended: true }), cors(), express.json());
 
             router = express.Router();
@@ -63,13 +55,8 @@ export default class API {
 
         if (!config.sentryDsn) return;
 
-        let integrations: Integration[] = [new Sentry.Integrations.Http({ tracing: true })];
-
-        if (app && router) integrations.push(new Tracing.Integrations.Express({ app, router }));
-
         Sentry.init({
             dsn: config.sentryDsn,
-            integrations,
             tracesSampleRate: 1
         });
     }

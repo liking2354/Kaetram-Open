@@ -74,5 +74,130 @@ export default {
     TRADE_COMPLETE: '感谢使用 Kaetram 交易系统！',
     WELCOME: '欢迎来到 {{name}}！',
     WELCOME_BACK: '欢迎回到 {{name}}！',
-    WHY_GO_THERE: '等等，我为什么要进去那里？'
+    WHY_GO_THERE: '等等，我为什么要进去那里？',
+
+    // 登录 / 注册界面
+    UI_USERNAME: '用户名',
+    UI_PASSWORD: '密码',
+    UI_CONFIRM_PASSWORD: '确认密码',
+    UI_EMAIL: '电子邮箱',
+    UI_REMEMBER_ME: '记住我',
+    UI_PLAY_AS_GUEST: '以访客身份游玩',
+    UI_LOGIN: '登录',
+    UI_NEW_ACCOUNT: '新建账号',
+    UI_NEW_CHARACTER: '新建角色',
+    UI_CANCEL: '取消',
+    UI_PLAY: '开始游戏',
+    UI_RESPAWN: '复活',
+    UI_YOU_HAVE_DIED: '你已死亡……',
+    UI_RESET_PASSWORD: '重置密码',
+    UI_WORLD_SELECT: '选择世界',
+    UI_CONTINUE: '继续',
+    UI_CONNECTING: '连接中',
+    UI_ABOUT: '关于',
+    UI_CREDITS: '鸣谢',
+    UI_DISCORD: 'Discord',
+    UI_PATREON: 'Patreon',
+    UI_PRIVACY: '隐私政策',
+    UI_CLICK_TO_CLOSE: '—— 点击任意处关闭 ——',
+
+    // 关于 / 鸣谢文字
+    UI_ABOUT_TEXT:
+        'Kaetram 是一款基于浏览器的 2D MMORPG 冒险游戏。你将扮演一名冒险者，与其他玩家一起探索 Kaetram 的世界。Kaetram 最初是 BrowserQuest 的衍生项目，经过不断发展已成为独立游戏。为致敬原始创意，美术资源得以保留并扩展。我们是为数不多的开源社区驱动游戏项目之一，始终欢迎编程、美术和音乐方面的贡献。源码可在我们的',
+    UI_CREDITS_THANKS: '特别感谢',
+    UI_CREDITS_PIXEL: '提供像素美术，',
+    UI_CREDITS_AND_TEAM: '以及 Asky 团队。',
+    UI_CREDITS_MORE_ASSETS: '更多像素资源来自',
+    UI_CREDITS_MUSIC: '音乐来自',
+
+    // reset.astro
+    UI_ACCEPT: '确认',
+    UI_ACCEPT_RESET: '确认重置',
+    UI_UNAVAILABLE_TEXT:
+        'Kaetram 内测已结束，测试版将于 2023 年 10 月 7 日上线。如需了解项目最新动态，欢迎加入我们的',
+    UI_DISCORD_SERVER: 'Discord 服务器',
+
+    // default.astro
+    UI_ENABLE_JS: '您必须启用 JavaScript 才能游玩 Kaetram。',
+
+    // game.astro — welcome
+    UI_WELCOME_TITLE: '欢迎来到 Kaetram！',
+    UI_LAST_LOGIN: '上次登录：',
+    UI_TIME_PLAYED: '游戏时长：',
+    UI_HOW_TO_PLAY: '游戏方式',
+    UI_DAILY_REWARDS: '每日奖励',
+    UI_MOVE_INSTRUCTIONS: '使用 WASD、方向键或点击鼠标进行移动。',
+    UI_START_QUEST: '开始任务',
+
+    // game.astro — profile
+    UI_TOTAL_EXP: '总经验：',
+
+    // game.astro — settings
+    UI_MUSIC_VOLUME: '音乐音量',
+    UI_SOUND_VOLUME: '音效音量',
+    UI_BRIGHTNESS: '亮度',
+    UI_AUDIO_ENABLED: '启用音频',
+    UI_LOW_POWER_MODE: '低功耗模式',
+    UI_JOYSTICK_ENABLED: '启用摇杆',
+    UI_DEBUG_MODE: '调试模式',
+    UI_SHOW_NAMES: '显示名称',
+    UI_SHOW_LEVELS: '显示等级',
+    UI_DISABLE_CACHING: '禁用缓存',
+    UI_ENABLE_WEBGL: '启用 WebGL',
+    UI_FPS_THROTTLE: 'FPS 限制',
+    UI_FPS_OFF: '关闭',
+    UI_GAME_VERSION: '游戏版本：',
+    UI_GAME_WORLD: '游戏世界：',
+    UI_LOG_OUT: '退出登录',
+
+    // game.astro — trade
+    UI_YOUR_INVENTORY: '我的背包',
+    UI_INPUT_AMOUNT: '输入数量',
+    UI_TRADE_ACCEPT: '接受',
+
+    // game.astro — store
+    UI_INPUT_BUY_AMOUNT: '输入购买数量',
+
+    // game.astro — action
+    UI_INPUT_DROP_AMOUNT: '输入丢弃数量',
+
+    // game.astro — leaderboards
+    UI_LEADERBOARDS_SEARCH_PLACEHOLDER: '输入关键词搜索……',
+
+    // game.astro — equipments
+    UI_ATTACK_STATS: '攻击属性',
+    UI_DEFENSE_STATS: '防御属性',
+    UI_BONUSES: '附加属性',
+    UI_CRUSH: '钝击：',
+    UI_SLASH: '斩击：',
+    UI_STAB: '刺击：',
+    UI_ARCHERY: '射术：',
+    UI_MAGIC: '魔法：',
+    UI_ACCURACY: '命中：',
+    UI_STRENGTH: '力量：',
+
+    // game.astro — quests
+    UI_QUEST_TITLE: '任务名称',
+    UI_DESCRIPTION: '描述',
+    UI_REWARD: '奖励',
+    UI_REQUIREMENTS: '要求',
+    UI_NONE: '无',
+
+    // game.astro — crafting
+    UI_CRAFT: '制作',
+
+    // game.astro — guilds
+    UI_CREATE: '创建',
+    UI_GUILDS: '公会',
+    UI_NO_GUILDS: '暂无可用公会……',
+    UI_GUILD_NAME_PLACEHOLDER: '输入公会名称……',
+    UI_BACK: '返回',
+    UI_PROMOTE: '晋升',
+    UI_DEMOTE: '降级',
+    UI_KICK: '踢出',
+    UI_LEAVE: '离开',
+    UI_GUILD_CHAT_PLACEHOLDER: '在此输入消息……',
+
+    // game.astro — chat
+    UI_CHAT_INPUT_TITLE: '输入消息！'
 } as const;

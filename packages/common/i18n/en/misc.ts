@@ -78,5 +78,130 @@ export default {
     TRADE_COMPLETE: 'Thank you for using Kaetram trading system!',
     WELCOME: 'Welcome to {{name}}!',
     WELCOME_BACK: 'Welcome back to {{name}}!',
-    WHY_GO_THERE: 'Now hang on, why would I wanna go in there?'
+    WHY_GO_THERE: 'Now hang on, why would I wanna go in there?',
+
+    // Login / Register UI
+    UI_USERNAME: 'Username',
+    UI_PASSWORD: 'Password',
+    UI_CONFIRM_PASSWORD: 'Confirm Password',
+    UI_EMAIL: 'Email Address',
+    UI_REMEMBER_ME: 'Remember Me',
+    UI_PLAY_AS_GUEST: 'Play as a guest',
+    UI_LOGIN: 'LOGIN',
+    UI_NEW_ACCOUNT: 'NEW ACCOUNT',
+    UI_NEW_CHARACTER: 'New Character',
+    UI_CANCEL: 'CANCEL',
+    UI_PLAY: 'PLAY',
+    UI_RESPAWN: 'RESPAWN',
+    UI_YOU_HAVE_DIED: 'You have died...',
+    UI_RESET_PASSWORD: 'Reset Password',
+    UI_WORLD_SELECT: 'World Select',
+    UI_CONTINUE: 'CONTINUE',
+    UI_CONNECTING: 'Connecting',
+    UI_ABOUT: 'About',
+    UI_CREDITS: 'Credits',
+    UI_DISCORD: 'Discord',
+    UI_PATREON: 'Patreon',
+    UI_PRIVACY: 'Privacy',
+    UI_CLICK_TO_CLOSE: '-- Click anywhere to close --',
+
+    // About / Credits text
+    UI_ABOUT_TEXT:
+        'Kaetram is a browser-based 2D MMORPG adventure. You play as an adventurer amongst others and explore the world of Kaetram. Originally started as a fork of BrowserQuest, Kaetram has evolved into its own game. In honour to the original idea, the assets have been preserved and expanded upon. We are one of a few open-source community driven game projects. We are always looking for assistance in terms of programming, graphic artists, and/or music composers. Our source-code can be found on our',
+    UI_CREDITS_THANKS: 'Special thanks to',
+    UI_CREDITS_PIXEL: 'for the pixel art,',
+    UI_CREDITS_AND_TEAM: 'and the Asky Team.',
+    UI_CREDITS_MORE_ASSETS: 'More pixel assets by',
+    UI_CREDITS_MUSIC: 'Music by',
+
+    // reset.astro
+    UI_ACCEPT: 'ACCEPT',
+    UI_ACCEPT_RESET: 'Accept Reset',
+    UI_UNAVAILABLE_TEXT:
+        'Kaetram alpha has ended. The beta version will be available October 7th, 2023. If you would like to stay up-to-date with the project, make sure you join our',
+    UI_DISCORD_SERVER: 'Discord server',
+
+    // default.astro
+    UI_ENABLE_JS: 'You must enable JavaScript to play Kaetram.',
+
+    // game.astro — welcome
+    UI_WELCOME_TITLE: 'Welcome to Kaetram!',
+    UI_LAST_LOGIN: 'Last login:',
+    UI_TIME_PLAYED: 'Time played:',
+    UI_HOW_TO_PLAY: 'How to Play',
+    UI_DAILY_REWARDS: 'Daily Rewards',
+    UI_MOVE_INSTRUCTIONS: 'Use WASD, the Arrow Keys, or Click to move around.',
+    UI_START_QUEST: 'Start Quest',
+
+    // game.astro — profile
+    UI_TOTAL_EXP: 'Total Exp:',
+
+    // game.astro — settings
+    UI_MUSIC_VOLUME: 'Music Volume',
+    UI_SOUND_VOLUME: 'Sound Volume',
+    UI_BRIGHTNESS: 'Brightness',
+    UI_AUDIO_ENABLED: 'Audio Enabled',
+    UI_LOW_POWER_MODE: 'Low Power Mode',
+    UI_JOYSTICK_ENABLED: 'Joystick Enabled',
+    UI_DEBUG_MODE: 'Debug Mode',
+    UI_SHOW_NAMES: 'Show Names',
+    UI_SHOW_LEVELS: 'Show Levels',
+    UI_DISABLE_CACHING: 'Disable Caching',
+    UI_ENABLE_WEBGL: 'Enable WebGL',
+    UI_FPS_THROTTLE: 'FPS Throttle',
+    UI_FPS_OFF: 'OFF',
+    UI_GAME_VERSION: 'Game Version:',
+    UI_GAME_WORLD: 'Game World:',
+    UI_LOG_OUT: 'Log Out',
+
+    // game.astro — trade
+    UI_YOUR_INVENTORY: 'Your Inventory',
+    UI_INPUT_AMOUNT: 'Input Amount',
+    UI_TRADE_ACCEPT: 'ACCEPT',
+
+    // game.astro — store
+    UI_INPUT_BUY_AMOUNT: 'Input Buy Amount',
+
+    // game.astro — action
+    UI_INPUT_DROP_AMOUNT: 'Input Drop Amount',
+
+    // game.astro — leaderboards
+    UI_LEADERBOARDS_SEARCH_PLACEHOLDER: 'Enter a term to search...',
+
+    // game.astro — equipments
+    UI_ATTACK_STATS: 'Attack Stats',
+    UI_DEFENSE_STATS: 'Defense Stats',
+    UI_BONUSES: 'Bonuses',
+    UI_CRUSH: 'Crush:',
+    UI_SLASH: 'Slash:',
+    UI_STAB: 'Stab:',
+    UI_ARCHERY: 'Archery:',
+    UI_MAGIC: 'Magic:',
+    UI_ACCURACY: 'Accuracy:',
+    UI_STRENGTH: 'Strength:',
+
+    // game.astro — quests
+    UI_QUEST_TITLE: 'Quest Title',
+    UI_DESCRIPTION: 'Description',
+    UI_REWARD: 'Reward',
+    UI_REQUIREMENTS: 'Requirements',
+    UI_NONE: 'None',
+
+    // game.astro — crafting
+    UI_CRAFT: 'Craft',
+
+    // game.astro — guilds
+    UI_CREATE: 'Create',
+    UI_GUILDS: 'Guilds',
+    UI_NO_GUILDS: 'There are no guilds available...',
+    UI_GUILD_NAME_PLACEHOLDER: 'Enter a name...',
+    UI_BACK: 'Back',
+    UI_PROMOTE: 'Promote',
+    UI_DEMOTE: 'Demote',
+    UI_KICK: 'Kick',
+    UI_LEAVE: 'Leave',
+    UI_GUILD_CHAT_PLACEHOLDER: 'Enter your message here...',
+
+    // game.astro — chat
+    UI_CHAT_INPUT_TITLE: 'Enter your message!'
 } as const;

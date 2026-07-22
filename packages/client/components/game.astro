@@ -1,3 +1,7 @@
+---
+import { t } from '@kaetram/common/i18n';
+---
+
 <div id="game-container">
     <div id="border">
         <div id="canvas">
@@ -15,11 +19,11 @@
             <div id="close-welcome" class="close-container"></div>
 
             <div id="welcome-info">
-                <h1>Welcome to Kaetram!</h1>
+                <h1>{t('misc:UI_WELCOME_TITLE')}</h1>
 
                 <div id="welcome-stats">
-                    <strong>Last login:</strong>
-                    <strong>Time played:</strong>
+                    <strong>{t('misc:UI_LAST_LOGIN')}</strong>
+                    <strong>{t('misc:UI_TIME_PLAYED')}</strong>
                 </div>
 
                 <div id="welcome-changelog" class="slice-inner-container">
@@ -35,15 +39,13 @@
             </div>
 
             <div id="welcome-play" class="slice-inner-container">
-                <div id="welcome-instructions">
-                    <h2>How to Play</h2>
+                    <div id="welcome-instructions">
+                        <h2>{t('misc:UI_HOW_TO_PLAY')}</h2>
 
-                    <div id="welcome-instructions-keyboard">
-                        <span>
-                            Use <strong>WASD</strong>, the <strong>Arrow Keys</strong>, or <strong
-                                >Click</strong
-                            > to move around.
-                        </span>
+                        <div id="welcome-instructions-keyboard">
+                            <span>
+                                {t('misc:UI_MOVE_INSTRUCTIONS')}
+                            </span>
 
                         <div class="welcome-controls">
                             <div id="controls-wasd"></div>
@@ -54,7 +56,7 @@
                 </div>
 
                 <div id="welcome-daily-rewards">
-                    <h2>Daily Rewards</h2>
+                    <h2>{t('misc:UI_DAILY_REWARDS')}</h2>
 
                     <div id="welcome-daily-rewards-items">
                         <div class="slice-item-slot"></div>
@@ -71,7 +73,7 @@
             <div class="quest-description"></div>
             <ul class="quest-rewards"></ul>
 
-            <div id="quest-button" class="slice-button stroke">Start Quest</div>
+            <div id="quest-button" class="slice-button stroke">{t('misc:UI_START_QUEST')}</div>
         </div>
 
         <div id="in-app-store" class="slice-container-fancy">
@@ -105,7 +107,7 @@
             <div id="chat-frame"></div>
 
             <input
-                title="Enter your message!"
+                title={t('misc:UI_CHAT_INPUT_TITLE')}
                 id="chat-input"
                 type="text"
                 maxlength="256"
@@ -137,7 +139,7 @@
                         <span id="profile-level"></span>
                     </span>
                     <span>
-                        <strong>Total Exp:</strong>
+                        <strong>{t('misc:UI_TOTAL_EXP')}</strong>
                         <span id="profile-experience"></span>
                     </span>
 
@@ -242,10 +244,10 @@
                 <div id="input-settings" class="slice-inner-container">
                     <div class="col">
                         <label>
-                            <span id="music-volume-text">Music Volume</span>
+                            <span id="music-volume-text">{t('misc:UI_MUSIC_VOLUME')}</span>
 
                             <input
-                                title="Music Volume"
+                                title={t('misc:UI_MUSIC_VOLUME')}
                                 id="music"
                                 type="range"
                                 min="0"
@@ -257,10 +259,10 @@
                         </label>
 
                         <label>
-                            <span id="sound-volume-text">Sound Volume</span>
+                            <span id="sound-volume-text">{t('misc:UI_SOUND_VOLUME')}</span>
 
                             <input
-                                title="Sound Volume"
+                                title={t('misc:UI_SOUND_VOLUME')}
                                 id="sound"
                                 type="range"
                                 min="0"
@@ -272,10 +274,10 @@
                         </label>
 
                         <label>
-                            <span id="brightness-text">Brightness</span>
+                            <span id="brightness-text">{t('misc:UI_BRIGHTNESS')}</span>
 
                             <input
-                                title="Brightness"
+                                title={t('misc:UI_BRIGHTNESS')}
                                 id="brightness"
                                 type="range"
                                 min="0"
@@ -287,21 +289,21 @@
                         </label>
 
                         <label id="audio-enabled-checkbox" class="check">
-                            <span id="audio-enabled-checkbox-text">Audio Enabled</span>
+                            <span id="audio-enabled-checkbox-text">{t('misc:UI_AUDIO_ENABLED')}</span>
 
                             <input type="checkbox" aria-labelledby="audio-enabled-checkbox-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="low-power-checkbox" class="check">
-                            <span id="low-power-checkbox-text">Low Power Mode</span>
+                            <span id="low-power-checkbox-text">{t('misc:UI_LOW_POWER_MODE')}</span>
 
                             <input type="checkbox" aria-labelledby="low-power-checkbox-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="joystick-enabled-checkbox" class="check">
-                            <span id="joystick-enabled-checkbox-text">Joystick Enabled</span>
+                            <span id="joystick-enabled-checkbox-text">{t('misc:UI_JOYSTICK_ENABLED')}</span>
 
                             <input
                                 type="checkbox"
@@ -313,48 +315,48 @@
 
                     <div class="col">
                         <label id="debug-mode-checkbox" class="check">
-                            <span id="debug-mode-checkbox-text">Debug Mode</span>
+                            <span id="debug-mode-checkbox-text">{t('misc:UI_DEBUG_MODE')}</span>
 
                             <input type="checkbox" aria-labelledby="debug-mode-checkbox-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="show-names-checkbox" class="check">
-                            <span id="show-names-checkbox-text">Show Names</span>
+                            <span id="show-names-checkbox-text">{t('misc:UI_SHOW_NAMES')}</span>
 
                             <input type="checkbox" aria-labelledby="show-names-checkbox-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="show-levels-checkbox" class="check">
-                            <span id="show-levels-checkbox-text">Show Levels</span>
+                            <span id="show-levels-checkbox-text">{t('misc:UI_SHOW_LEVELS')}</span>
 
                             <input type="checkbox" aria-labelledby="show-levels-checkbox-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="disable-region-caching-checkbox" class="check">
-                            <span id="disable-region-caching-text">Disable Caching</span>
+                            <span id="disable-region-caching-text">{t('misc:UI_DISABLE_CACHING')}</span>
 
                             <input type="checkbox" aria-labelledby="disable-region-caching-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="webgl-checkbox" class="check">
-                            <span id="webgl-text">Enable WebGL</span>
+                            <span id="webgl-text">{t('misc:UI_ENABLE_WEBGL')}</span>
 
                             <input type="checkbox" aria-labelledby="webgl-text" />
                             <span class="checkmark"></span>
                         </label>
 
                         <label id="frame-throttle">
-                            <span id="frame-throttle-text">FPS Throttle</span>
+                            <span id="frame-throttle-text">{t('misc:UI_FPS_THROTTLE')}</span>
 
                             <select
                                 id="frame-throttle-select"
                                 aria-labelledby="frame-throttle-text"
                             >
-                                <option value="0">OFF</option>
+                                <option value="0">{t('misc:UI_FPS_OFF')}</option>
                                 <option value="1">50 FPS</option>
                                 <option value="2">30 FPS</option>
                             </select>
@@ -365,12 +367,12 @@
                 <div id="action-settings">
                     <div id="game-info" class="slice-inner-container">
                         <span>
-                            <strong>Game Version:</strong>
+                            <strong>{t('misc:UI_GAME_VERSION')}</strong>
                             <span id="game-info-version"></span>
                         </span>
 
                         <span>
-                            <strong>Game World:</strong>
+                            <strong>{t('misc:UI_GAME_WORLD')}</strong>
                             <span id="game-info-world"></span>
                         </span>
                     </div>
@@ -385,7 +387,7 @@
                         onkeydown="if (event.keyCode === 13) location.reload();"
                         tabindex="0"
                     >
-                        Log Out
+                        {t('misc:UI_LOG_OUT')}
                     </div>
                 </div>
             </div>
@@ -456,13 +458,13 @@
             <div id="close-trade" class="close-container"></div>
 
             <div id="trade-inventory">
-                <div class="title-decoration">Your Inventory</div>
+                <div class="title-decoration">{t('misc:UI_YOUR_INVENTORY')}</div>
 
                 <div id="trade-inventory-slots" class="slice-inner-container">
                     <ul></ul>
 
-                    <dialog id="trade-count" class="slice-dialog">
-                        <div class="dialog-title">Input Amount</div>
+                        <dialog id="trade-count" class="slice-dialog">
+                            <div class="dialog-title">{t('misc:UI_INPUT_AMOUNT')}</div>
 
                         <input
                             title="Count"
@@ -500,7 +502,7 @@
                 </div>
 
                 <div id="trade-status"></div>
-                <div id="trade-accept" class="stroke slice-button">ACCEPT</div>
+                <div id="trade-accept" class="stroke slice-button">{t('misc:UI_TRADE_ACCEPT')}</div>
             </div>
         </div>
 
@@ -562,7 +564,7 @@
             </div>
 
             <dialog id="store-buy" class="slice-dialog">
-                <div class="dialog-title">Input Buy Amount</div>
+                <div class="dialog-title">{t('misc:UI_INPUT_BUY_AMOUNT')}</div>
 
                 <input
                     title="Count"
@@ -586,14 +588,14 @@
 
             <div id="leaderboards-search" class="slice-inner-container">
                 <input
-                    title="Enter a search term..."
+                    title={t('misc:UI_LEADERBOARDS_SEARCH_PLACEHOLDER')}
                     id="leaderboards-search-input"
                     class="slice-input"
                     type="text"
                     maxlength="32"
                     autocomplete="off"
                     data-lpignore="true"
-                    placeholder="Enter a term to search..."
+                    placeholder={t('misc:UI_LEADERBOARDS_SEARCH_PLACEHOLDER')}
                 />
 
                 <ul></ul>
@@ -670,29 +672,29 @@
 
             <div id="equipments-player-stats">
                 <div id="attack-stats">
-                    <p class="title">Attack Stats</p>
-                    <p class="crush">Crush:</p>
-                    <p class="slash">Slash:</p>
-                    <p class="stab">Stab:</p>
-                    <p class="archery">Archery:</p>
-                    <p class="magic">Magic:</p>
+                    <p class="title">{t('misc:UI_ATTACK_STATS')}</p>
+                    <p class="crush">{t('misc:UI_CRUSH')}</p>
+                    <p class="slash">{t('misc:UI_SLASH')}</p>
+                    <p class="stab">{t('misc:UI_STAB')}</p>
+                    <p class="archery">{t('misc:UI_ARCHERY')}</p>
+                    <p class="magic">{t('misc:UI_MAGIC')}</p>
                 </div>
 
                 <div id="defense-stats">
-                    <p class="title">Defense Stats</p>
-                    <p class="crush">Crush:</p>
-                    <p class="slash">Slash:</p>
-                    <p class="stab">Stab:</p>
-                    <p class="archery">Archery:</p>
-                    <p class="magic">Magic:</p>
+                    <p class="title">{t('misc:UI_DEFENSE_STATS')}</p>
+                    <p class="crush">{t('misc:UI_CRUSH')}</p>
+                    <p class="slash">{t('misc:UI_SLASH')}</p>
+                    <p class="stab">{t('misc:UI_STAB')}</p>
+                    <p class="archery">{t('misc:UI_ARCHERY')}</p>
+                    <p class="magic">{t('misc:UI_MAGIC')}</p>
                 </div>
 
                 <div id="bonuses">
-                    <p class="title">Bonuses</p>
-                    <p class="accuracy">Accuracy:</p>
-                    <p class="strength">Strength:</p>
-                    <p class="archery">Archery:</p>
-                    <p class="magic">Magic:</p>
+                    <p class="title">{t('misc:UI_BONUSES')}</p>
+                    <p class="accuracy">{t('misc:UI_ACCURACY')}</p>
+                    <p class="strength">{t('misc:UI_STRENGTH')}</p>
+                    <p class="archery">{t('misc:UI_ARCHERY')}</p>
+                    <p class="magic">{t('misc:UI_MAGIC')}</p>
                 </div>
             </div>
         </div>
@@ -724,17 +726,17 @@
                 <div id="quests-list" class="slice-inner-container stroke"><ul></ul></div>
                 <div id="quests-logs" class="slice-inner-container">
                     <div id="quests-logs-container">
-                        <h1 id="quests-logs-title" class="stroke">Quest Title</h1>
+                        <h1 id="quests-logs-title" class="stroke">{t('misc:UI_QUEST_TITLE')}</h1>
                         <p id="quests-logs-shortdesc"></p>
 
-                        <h3 class="stroke">Description</h3>
+                        <h3 class="stroke">{t('misc:UI_DESCRIPTION')}</h3>
                         <p id="quests-logs-description"></p>
 
-                        <h3 class="stroke">Reward</h3>
+                        <h3 class="stroke">{t('misc:UI_REWARD')}</h3>
                         <p id="quests-logs-rewards"></p>
 
-                        <h3 class="stroke">Requirements</h3>
-                        <p id="quests-logs-requirements">None</p>
+                        <h3 class="stroke">{t('misc:UI_REQUIREMENTS')}</h3>
+                        <p id="quests-logs-requirements">{t('misc:UI_NONE')}</p>
                     </div>
                 </div>
             </div>
@@ -769,7 +771,7 @@
             </div>
 
             <dialog id="action-drop" class="slice-dialog">
-                <div class="dialog-title">Input Drop Amount</div>
+                <div class="dialog-title">{t('misc:UI_INPUT_DROP_AMOUNT')}</div>
 
                 <input
                     title="Count"
@@ -812,7 +814,7 @@
                 <li id="craft-ten" class="amount-button amount-ten"></li>
             </ul>
 
-            <div id="craft-button" class="stroke">Craft</div>
+            <div id="craft-button" class="stroke">{t('misc:UI_CRAFT')}</div>
         </div>
 
         <div id="guilds" class="slice-container">
@@ -823,16 +825,16 @@
                 <div id="banner-crest"></div>
             </div>
 
-            <div id="guilds-list-container" class="stroke">
-                <div id="create-guild" class="element-button element-button stroke">Create</div>
+                <div id="guilds-list-container" class="stroke">
+                    <div id="create-guild" class="element-button element-button stroke">{t('misc:UI_CREATE')}</div>
 
-                <div class="title-decoration">Guilds</div>
+                    <div class="title-decoration">{t('misc:UI_GUILDS')}</div>
 
-                <div id="guilds-list" class="slice-inner-container">
-                    <p id="guilds-info" class="stroke">There are no guilds available...</p>
-                    <ul></ul>
+                    <div id="guilds-list" class="slice-inner-container">
+                        <p id="guilds-info" class="stroke">{t('misc:UI_NO_GUILDS')}</p>
+                        <ul></ul>
+                    </div>
                 </div>
-            </div>
 
             <div id="guilds-create" class="slice-inner-container">
                 <div id="banner-select">
@@ -854,7 +856,7 @@
                         maxlength="16"
                         autocomplete="off"
                         data-lpignore="true"
-                        placeholder="Enter a name..."
+                        placeholder={t('misc:UI_GUILD_NAME_PLACEHOLDER')}
                         class="guilds-name-input-image stroke slice-input"
                     />
 
@@ -864,9 +866,9 @@
 
                     <div class="button-row stroke">
                         <div id="guilds-back-button" class="element-button element-button-red">
-                            Back
+                            {t('misc:UI_BACK')}
                         </div>
-                        <div id="guilds-create-button" class="element-button">Create</div>
+                        <div id="guilds-create-button" class="element-button">{t('misc:UI_CREATE')}</div>
                     </div>
                 </div>
             </div>
@@ -874,7 +876,7 @@
             <div id="guilds-info-container">
                 <div id="guilds-info-header">
                     <div id="guilds-leave" class="element-button element-button-red stroke">
-                        Leave
+                        {t('misc:UI_LEAVE')}
                     </div>
 
                     <div id="guilds-name" class="title-decoration"></div>
@@ -889,14 +891,14 @@
                         </h2>
 
                         <div class="stroke button-row">
-                            <div id="guild-member-promote" class="element-button">Promote</div>
+                            <div id="guild-member-promote" class="element-button">{t('misc:UI_PROMOTE')}</div>
 
                             <div id="guild-member-demote" class="element-button element-button-red">
-                                Demote
+                                {t('misc:UI_DEMOTE')}
                             </div>
 
                             <div id="guild-member-kick" class="element-button element-button-red">
-                                Kick
+                                {t('misc:UI_KICK')}
                             </div>
                         </div>
                     </dialog>
@@ -910,7 +912,7 @@
                         maxlength="256"
                         autocomplete="off"
                         data-lpignore="true"
-                        placeholder="Enter your message here..."
+                        placeholder={t('misc:UI_GUILD_CHAT_PLACEHOLDER')}
                         class="guilds-chat-input-image stroke slice-input"
                     />
                 </div>

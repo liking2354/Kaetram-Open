@@ -35,7 +35,7 @@ let name = t('game:NAME'),
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
         <meta name="image" content={site('icon.png')} />
-        <meta name="language" content="English" />
+        <meta name="language" content={currentLanguage} />
 
         <!-- Sitemap -->
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
@@ -133,7 +133,7 @@ let name = t('game:NAME'),
     </head>
     <body class="intro">
         <noscript>
-            <div id="alert">You must enable JavaScript to play Kaetram.</div>
+            <div id="alert">{t('misc:UI_ENABLE_JS')}</div>
         </noscript>
 
         <slot />

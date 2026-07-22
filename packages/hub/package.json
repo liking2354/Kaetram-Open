@@ -8,8 +8,7 @@
     },
     "dependencies": {
         "@kaetram/common": "workspace:*",
-        "@sentry/node": "^7.68.0",
-        "@sentry/tracing": "^7.68.0",
+        "@sentry/node": "^8.0.0",
         "axios": "^1.5.0",
         "cors": "^2.8.5",
         "discord.js": "^14.13.0",
@@ -19,8 +18,8 @@
         "mongodb": "^6.0.0",
         "nodemailer": "^6.9.5",
         "stripe": "^13.5.0",
-        "tsx": "^3.12.10",
-        "uws": "https://github.com/uNetworking/uWebSockets.js.git#commit=e6ecc2102d68d99dc35969b0898fbd201e0f252b"
+        "tsx": "^4.19.0",
+        "uws": "github:uNetworking/uWebSockets.js#v20.63.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.14",

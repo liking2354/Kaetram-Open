@@ -1,6 +1,6 @@
 import { defineMiddleware } from 'astro/middleware';
 
-let allowedAdresses = new Set(['127.0.0.1']);
+let allowedAdresses = new Set(['127.0.0.1', '::1', '::ffff:127.0.0.1']);
 
 export const onRequest = defineMiddleware((context, next) => {
     if (!allowedAdresses.has(context.clientAddress)) return new Response(null, { status: 403 });

@@ -4,9 +4,7 @@ import Utils from '@kaetram/common/util/utils';
 import axios from 'axios';
 import express from 'express';
 import * as Sentry from '@sentry/node';
-import * as Tracing from '@sentry/tracing';
 
-import type { Integration } from '@sentry/types';
 import type { Router, Express } from 'express';
 import type World from '../game/world';
 
@@ -31,12 +29,6 @@ export default class API {
         // API must be initialized if the hub is enabled.
         if (apiEnabled) {
             app = express();
-
-            if (config.sentryDsn)
-                app.use(Sentry.Handlers.requestHandler())
-                    .use(Sentry.Handlers.tracingHandler())
-                    .use(Sentry.Handlers.errorHandler());
-
             app.use(express.urlencoded({ extended: true })).use(express.json());
 
             router = express.Router();
@@ -50,13 +42,8 @@ export default class API {
 
         if (!config.sentryDsn) return;
 
-        let integrations: Integration[] = [new Sentry.Integrations.Http({ tracing: true })];
-
-        if (app && router) integrations.push(new Tracing.Integrations.Express({ app, router }));
-
         Sentry.init({
             dsn: config.sentryDsn,
-            integrations,
             tracesSampleRate: 1
         });
     }
