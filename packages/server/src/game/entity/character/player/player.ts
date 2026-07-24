@@ -220,16 +220,9 @@ export default class Player extends Character {
     }
 
     /**
-     * Begins the loading process by first inserting the database
-     * information into the player object. The loading process works
-     * as follows, a request to load the equipment data is made,
-     * once that is completed, the callback in the player handler
-     * begins loading the inventory, then the bank and quests, then
-     * achievements, then skills, and finally the `intro` packet
-     * is sent to the client. This is because we want to load the aforementioned
-     * objects prior to entering the region since it may affect dynamic data,
-     * entity information, and other stuff. The region system must have the player
-     * fully loaded from the database prior to calculating region data.
+     * Loads all persistent player data before introducing the player to the world.
+     * The container and profile loads run concurrently, but all complete before
+     * `intro()` queues Welcome so a client cannot render a transient empty inventory.
      * @param data PlayerInfo object containing all data.
      */
 
@@ -260,21 +253,29 @@ export default class Player extends Character {
 
         this.friends.load(data.friends);
 
-        this.loadSkills();
-        this.loadEquipment();
-        this.loadInventory();
-        this.loadBank();
-        this.loadStatistics();
-        this.loadAbilities();
+        // Keep database reads concurrent, then wait until all client-visible batches
+        // have been queued before Welcome is sent by intro().
+        let initialLoads = Promise.all([
+            this.loadSkills(),
+            this.loadEquipment(),
+            this.loadInventory(),
+            this.loadBank(),
+            this.loadStatistics(),
+            this.loadAbilities()
+        ]);
 
         // Synchronize login with the hub's server list.
         this.world.client.send(
             new PlayerPacket(Opcodes.Player.Login, { username: this.username, guild: this.guild })
         );
 
-        // Quests and achievements have to be loaded prior to introducing the player.
+        // Quests and achievements must also be ready before entering regions.
         await this.loadQuests();
         await this.loadAchievements();
+        await initialLoads;
+
+        // A database callback may finish after the socket has already closed.
+        if (this.connection.closed) return;
 
         this.intro();
 
@@ -292,24 +293,39 @@ export default class Player extends Character {
      * Loads the equipment data from the database.
      */
 
-    public loadEquipment(): void {
-        this.database.loader?.loadEquipment(this, this.equipment.load.bind(this.equipment));
+    public loadEquipment(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadEquipment(this, (data) => {
+                this.equipment.load(data);
+                resolve();
+            });
+        });
     }
 
     /**
      * Loads the inventory data from the database.
      */
 
-    public loadInventory(): void {
-        this.database.loader?.loadInventory(this, this.inventory.load.bind(this.inventory));
+    public loadInventory(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadInventory(this, (data) => {
+                this.inventory.load(data);
+                resolve();
+            });
+        });
     }
 
     /**
      * Loads the bank data from the database.
      */
 
-    public loadBank(): void {
-        this.database.loader?.loadBank(this, this.bank.load.bind(this.bank));
+    public loadBank(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadBank(this, (data) => {
+                this.bank.load(data);
+                resolve();
+            });
+        });
     }
 
     /**
@@ -332,24 +348,39 @@ export default class Player extends Character {
      * Loads the skill data from the database.
      */
 
-    public loadSkills(): void {
-        this.database.loader?.loadSkills(this, this.skills.load.bind(this.skills));
+    public loadSkills(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadSkills(this, (data) => {
+                this.skills.load(data);
+                resolve();
+            });
+        });
     }
 
     /**
      * Loads the statistics data from the database.
      */
 
-    public loadStatistics(): void {
-        this.database.loader?.loadStatistics(this, this.statistics.load.bind(this.statistics));
+    public loadStatistics(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadStatistics(this, (data) => {
+                if (data) this.statistics.load(data);
+                resolve();
+            });
+        });
     }
 
     /**
      * Loads the abilities data from the database.
      */
 
-    public loadAbilities(): void {
-        this.database.loader?.loadAbilities(this, this.abilities.load.bind(this.abilities));
+    public loadAbilities(): Promise<void> {
+        return new Promise((resolve) => {
+            this.database.loader.loadAbilities(this, (data) => {
+                this.abilities.load(data || { abilities: [] });
+                resolve();
+            });
+        });
     }
 
     /**

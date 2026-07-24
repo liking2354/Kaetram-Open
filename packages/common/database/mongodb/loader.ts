@@ -165,10 +165,12 @@ export default class Loader {
      * @param callback Contains the statistics data from the database.
      */
 
-    public loadStatistics(player: Player, callback: (statistics: StatisticsData) => void): void {
+    public loadStatistics(player: Player, callback: (statistics?: StatisticsData) => void): void {
         this.load(player.username, 'player_statistics', (info: unknown) => {
-            if (!info)
-                return log.debug(`[player_statistics] No statistics found for ${player.username}.`);
+            if (!info) {
+                log.debug(`[player_statistics] No statistics found for ${player.username}.`);
+                return callback();
+            }
 
             let [statistics] = info as StatisticsData[];
 
@@ -182,10 +184,12 @@ export default class Loader {
      * @param callback Contains the abilities data from the database.
      */
 
-    public loadAbilities(player: Player, callback: (abilities: SerializedAbility) => void): void {
+    public loadAbilities(player: Player, callback: (abilities?: SerializedAbility) => void): void {
         this.load(player.username, 'player_abilities', (info: unknown) => {
-            if (!info)
-                return log.debug(`[player_abilities] No abilities found for ${player.username}.`);
+            if (!info) {
+                log.debug(`[player_abilities] No abilities found for ${player.username}.`);
+                return callback();
+            }
 
             let [abilities] = info as SerializedAbility[];
 

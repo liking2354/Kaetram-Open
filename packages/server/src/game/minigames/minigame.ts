@@ -129,7 +129,7 @@ export default class Minigame {
         this.playersInLobby.push(player);
 
         this.sendPacket([player], {
-            action: Opcodes.MinigameState.Lobby
+            action: Opcodes.MinigameActions.Lobby
         });
 
         // Notify the player of the minigame.
