@@ -10,6 +10,30 @@ import log from '@kaetram/common/util/log';
 import config from '@kaetram/common/config';
 import Database from '@kaetram/common/database/database';
 
+// Preload quest translations to ensure they are included in the bundle.
+// esbuild's static analysis cannot detect dynamic key lookups in QUEST_TRANSLATIONS.
+import ancientlandsZh from '@kaetram/common/i18n/zh/quest/ancientlands';
+import anvilsechoesZh from '@kaetram/common/i18n/zh/quest/anvilsechoes';
+import artsandcraftsZh from '@kaetram/common/i18n/zh/quest/artsandcrafts';
+import clamchowderZh from '@kaetram/common/i18n/zh/quest/clamchowder';
+import codersfallacyZh from '@kaetram/common/i18n/zh/quest/codersfallacy';
+import codersglitchZh from '@kaetram/common/i18n/zh/quest/codersglitch';
+import codersglitch2Zh from '@kaetram/common/i18n/zh/quest/codersglitch2';
+import desertquestZh from '@kaetram/common/i18n/zh/quest/desertquest';
+import evilsantaZh from '@kaetram/common/i18n/zh/quest/evilsanta';
+import forestingZh from '@kaetram/common/i18n/zh/quest/foresting';
+import herbalistdesperationZh from '@kaetram/common/i18n/zh/quest/herbalistdesperation';
+import minersquestZh from '@kaetram/common/i18n/zh/quest/minersquest';
+import minersquest2Zh from '@kaetram/common/i18n/zh/quest/minersquest2';
+import ricksrollZh from '@kaetram/common/i18n/zh/quest/ricksroll';
+import royaldramaZh from '@kaetram/common/i18n/zh/quest/royaldrama';
+import royalpetZh from '@kaetram/common/i18n/zh/quest/royalpet';
+import scavengerZh from '@kaetram/common/i18n/zh/quest/scavenger';
+import scientistspotionZh from '@kaetram/common/i18n/zh/quest/scientistspotion';
+import seaactivitiesZh from '@kaetram/common/i18n/zh/quest/seaactivities';
+import sorceryZh from '@kaetram/common/i18n/zh/quest/sorcery';
+import tutorialZh from '@kaetram/common/i18n/zh/quest/tutorial';
+
 import type Connection from './network/connection';
 import type MongoDB from '@kaetram/common/database/mongodb/mongodb';
 
