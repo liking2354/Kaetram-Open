@@ -2249,7 +2249,9 @@ export default class Player extends Character {
         this.skills.sync();
 
         // Sync the player information to the surrounding regions.
-        this.sendToRegions(new SyncPacket(this.serialize(true)), true);
+        // Include equipment and experience data so clients can display
+        // equipment layers and update the experience bar in real-time.
+        this.sendToRegions(new SyncPacket(this.serialize(true, true, true)), true);
     }
 
     /**

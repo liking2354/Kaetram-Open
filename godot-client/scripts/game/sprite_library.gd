@@ -18,13 +18,17 @@ static var _loaded := false
 ## 玩家装备槽 -> 精灵子目录。
 const EQUIPMENT_FOLDERS := {
 	0: "helmet", # Helmet
+	1: "pendant", # Pendant
+	2: "arrows", # Arrows
 	3: "chestplate", # Chestplate
 	4: "weapon", # Weapon
 	5: "shield", # Shield
+	6: "ring", # Ring
 	7: "skin", # ArmourSkin
 	8: "weapon", # WeaponSkin（与武器同目录）
 	9: "legplates", # Legplates
 	10: "cape", # Cape
+	11: "boots", # Boots
 }
 
 ## 装备渲染顺序（自底向上，与浏览器端 EquipmentRenderOrder 一致）。
