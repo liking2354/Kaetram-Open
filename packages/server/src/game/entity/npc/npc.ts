@@ -47,7 +47,7 @@ export default class NPC extends Entity {
 
         // Load default NPC data with translation fallback.
         this.name = translated?.name ?? this.data.name!;
-        this.text = translated?.text ?? this.data.text ?? this.text;
+        this.text = (translated?.text as string[] | undefined) ?? this.data.text ?? this.text;
         this.role = this.data.role!;
         this.store = this.data.store || '';
     }

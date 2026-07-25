@@ -38,7 +38,7 @@ interface ItemDrop {
 
 interface MobTranslation {
     name?: string;
-    description?: string;
+    description?: string | readonly string[];
 }
 
 export default class Mob extends Character {
