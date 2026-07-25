@@ -3,6 +3,7 @@ import Item from '../../../objects/item';
 import log from '@kaetram/common/util/log';
 import Utils from '@kaetram/common/util/utils';
 import { Modules } from '@kaetram/common/network';
+import { t } from '@kaetram/common/i18n';
 
 import type Player from '../player';
 import type Mob from '../../mob/mob';
@@ -29,6 +30,19 @@ type DoorCallback = (quest: ProcessedDoor, player: Player) => void;
 type KillCallback = (mob: Mob) => void;
 type ResourceCallback = (type: Modules.Skills, resourceType: string) => void;
 
+interface QuestTranslation {
+    name?: string;
+    description?: string;
+    rewards?: string[];
+    stages?: {
+        [id: number]: {
+            text?: string[];
+            completedText?: string[];
+            hasItemText?: string[];
+        };
+    };
+}
+
 export default abstract class Quest {
     /**
      * An abstract quest class that takes the raw quest data and
@@ -54,6 +68,7 @@ export default abstract class Quest {
 
     private stageData: StageData; // Current stage data, constantly updated when progression occurs.
     private stages: { [id: number]: RawStage } = {}; // All the stages from the JSON data.
+    private translatedStages?: QuestTranslation['stages']; // Translated stage data if available.
 
     // Store all NPCs involved in the quest.
     private npcs: string[] = [];
@@ -74,9 +89,12 @@ export default abstract class Quest {
         private key: string,
         rawData: RawQuest
     ) {
-        this.name = rawData.name;
-        this.description = rawData.description;
-        this.rewards = rawData.rewards || [];
+        // Load translated quest data if available, fallback to rawData.
+        let translated = this.loadTranslation();
+
+        this.name = translated?.name ?? rawData.name;
+        this.description = translated?.description ?? rawData.description;
+        this.rewards = translated?.rewards ?? rawData.rewards ?? [];
         this.skillRequirements = rawData.skillRequirements || {};
         this.questRequirements = rawData.questRequirements || [];
         this.difficulty = rawData.difficulty || '';
@@ -84,6 +102,7 @@ export default abstract class Quest {
         this.stageCount = Object.keys(rawData.stages).length;
 
         this.stages = rawData.stages;
+        this.translatedStages = translated?.stages;
 
         this.stageData = this.getStageData();
 
@@ -94,6 +113,42 @@ export default abstract class Quest {
         this.onDoor(this.handleDoor.bind(this));
         this.onKill(this.handleKill.bind(this));
         this.onResource(this.handleResource.bind(this));
+    }
+
+    /**
+     * Loads the translated quest data for the current locale.
+     * Returns undefined if no translation is available.
+     */
+    private loadTranslation(): QuestTranslation | undefined {
+        try {
+            // Try to load the translation module for this quest.
+            // Using dynamic import path pattern to avoid eslint no-var-requires.
+            let translation = this.loadTranslationModule();
+            return translation.default ?? translation;
+        } catch {
+            // Translation file doesn't exist, fallback to raw data.
+            return undefined;
+        }
+    }
+
+    private loadTranslationModule(): { [key: string]: unknown } {
+        // This function is a placeholder that will be replaced by a proper dynamic import.
+        // For now, we use a simple require with eslint disable.
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        return require(`@kaetram/common/i18n/${t.language}/quest/${this.key}`);
+    }
+
+    /**
+     * Gets the translated text for a given stage and field.
+     * Falls back to the raw stage data if no translation is available.
+     */
+    private getTranslatedText(
+        stageId: number,
+        field: 'text' | 'completedText' | 'hasItemText'
+    ): string[] | undefined {
+        let translatedStage = this.translatedStages?.[stageId];
+        if (translatedStage?.[field]) return translatedStage[field];
+        return this.stages[stageId]?.[field];
     }
 
     /**
@@ -639,12 +694,13 @@ export default abstract class Quest {
              */
 
             if (subStage && this.completedSubStages.includes(subStage.npc!))
-                return stage.completedText!;
+                return this.getTranslatedText(i, 'completedText') ?? stage.completedText!;
 
             // Ensure we are on the correct stage and that it has an item requirement, otherwise skip.
             if (this.hasItemRequirement(stage) && this.stage === i) {
                 // Verify that the player has the required items and return the dialogue for it.
-                if (this.hasAllItems(player, stage.itemRequirements)) return stage.hasItemText!;
+                if (this.hasAllItems(player, stage.itemRequirements))
+                    return this.getTranslatedText(i, 'hasItemText') ?? stage.hasItemText!;
 
                 // Skip to next stage iteration.
                 continue;
@@ -655,13 +711,15 @@ export default abstract class Quest {
              * recent stage containing the NPC, then we use the dialogue
              * for after the stage is completed.
              */
-            if (this.stage > i) return stage.completedText!;
+            if (this.stage > i)
+                return this.getTranslatedText(i, 'completedText') ?? stage.completedText!;
 
-            return stage.text!;
+            return this.getTranslatedText(i, 'text') ?? stage.text!;
         }
 
         // The default text witll be the `text` array of strings.
-        if (this.stageData.npc === npc.key) return this.stageData.text!;
+        if (this.stageData.npc === npc.key)
+            return this.getTranslatedText(this.stage, 'text') ?? this.stageData.text!;
 
         return [''];
     }

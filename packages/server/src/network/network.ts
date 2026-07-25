@@ -124,7 +124,11 @@ export default class Network {
      */
 
     public send(player: Player, packet: Packet): void {
-        if (!player || !(player.instance in this.packets)) return;
+        if (!player) return;
+
+        // Queue may not exist yet during early login (handleHandshake before addPlayer),
+        // create it to avoid silently dropping important packets like Container/Quest batch.
+        if (!(player.instance in this.packets)) this.packets[player.instance] = [];
 
         this.packets[player.instance].push(packet.serialize());
     }

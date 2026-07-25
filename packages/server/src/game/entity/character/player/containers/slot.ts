@@ -38,8 +38,12 @@ export default class Slot {
         if (!item.exists)
             return log.info(`Item doesn't exist: ${item.key}, deleting from existence.`);
 
+        // stackSize may be undefined when container doesn't specify it (e.g. Inventory).
+        // In that case fall back to the item's own maxStackSize to avoid NaN.
+        let effectiveStackSize = stackSize ?? item.maxStackSize;
+
         this.key = item.key;
-        this.count = Math.min(item.count, stackSize);
+        this.count = Math.min(item.count, effectiveStackSize);
         this.enchantments = item.enchantments;
 
         this.edible = item.edible;
@@ -52,7 +56,7 @@ export default class Slot {
         this.defenseStats = item.defenseStats;
         this.bonuses = item.bonuses;
 
-        this.maxStackSize = stackSize;
+        this.maxStackSize = effectiveStackSize;
 
         if (this.count < 1) log.error('Updating slot with count less than 1:', item.key);
 

@@ -49,7 +49,7 @@ export let locales: { [K in Locale]: string } = {
     zh: 'zh-CN'
 } as const;
 
-export let defaultLocale = 'en' as const;
+export let defaultLocale = 'zh' as const;
 export let defaultResource = resources[defaultLocale];
 
 export let ns = Object.keys(defaultResource);

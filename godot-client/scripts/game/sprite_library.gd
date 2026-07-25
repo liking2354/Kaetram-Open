@@ -123,9 +123,11 @@ static func _load_texture(key: String) -> Texture2D:
 	var path := "res://assets/sprites/%s.png" % key
 	if _texture_cache.has(path):
 		return _texture_cache[path]
-	if not ResourceLoader.exists(path):
+	# Use load() directly instead of ResourceLoader.exists() which may fail in editor
+	var texture: Texture2D = load(path) as Texture2D
+	if texture == null:
+		push_warning("[SpriteLibrary] Cannot load texture: %s" % path)
 		return null
-	var texture: Texture2D = load(path)
 	_texture_cache[path] = texture
 	return texture
 

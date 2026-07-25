@@ -106,6 +106,8 @@ func _ready() -> void:
 	_inventory_ui.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
 	_inventory_ui.position = Vector2(-290, -280)
 	_ui_layer.add_child(_inventory_ui)
+	# 主动刷新一次，因为 Batch 包可能在场景切换前就已到达。
+	_inventory_ui.refresh()
 
 	# 挂载角色面板（右侧居中）。
 	_character_ui = CharacterUIScene.new()
@@ -1133,6 +1135,7 @@ func _on_camera_mode(lock_x: bool, lock_y: bool) -> void:
 func _on_player_died() -> void:
 	if _local_player:
 		_local_player.stop_attack()
+		_local_player.frozen = true
 		_local_player.get_visual().set_moving(false)
 		_local_player.get_visual().play_death()
 	Audio.stop_music()
@@ -1156,6 +1159,7 @@ func _on_player_respawned() -> void:
 	_local_player.grid_pos = grid
 	_local_player.position = _map_manager.grid_to_world(grid.x, grid.y)
 	_camera.position = _local_player.position
+	_local_player.frozen = false
 	# 重置死亡状态：恢复透明度和待机动画。
 	var visual: EntityVisual = _local_player.get_visual()
 	visual.revive()
@@ -1499,7 +1503,10 @@ func _make_bar_button(parent: HBoxContainer, label_text: String, panel: Control)
 ## 底部按钮点击：切换对应面板的显隐。
 func _on_bar_button_pressed(panel: Control) -> void:
 	if is_instance_valid(panel):
-		panel.visible = not panel.visible
+		if panel.has_method("toggle"):
+			panel.call("toggle")
+		else:
+			panel.visible = not panel.visible
 
 
 ## 聊天消息：带气泡的玩家消息在对应实体头顶显示。

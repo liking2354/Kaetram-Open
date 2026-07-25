@@ -17,6 +17,11 @@ var grid_pos := Vector2i.ZERO
 var movement_speed := 220
 ## 当前朝向（Stop 包需要）。
 var orientation := Modules.Orientation.DOWN
+## 传送/死亡期间冻结移动输入，与浏览器端 player.frozen/disableAction 对应。
+## 服务端 handleMovementRequest 一旦检测到 >2 格落差就会把 invalidateMovement
+## 永久置为 true（无重置逻辑，只能重连恢复），所以传送瞬间必须在客户端
+## 提前拦截，禁止用旧 grid_pos 发出 Request/Step 包。
+var frozen := false
 
 var _astar := AStarGrid2D.new()
 var _map_manager: MapManager
@@ -37,6 +42,8 @@ var _attack_engaged := false
 
 ## 攻击指定实体：寻路到目标身旁 -> 进入攻击范围 -> 发送 Target.Attack。
 func attack_entity(marker: EntityMarker) -> void:
+	if frozen:
+		return
 	_follow_target = null
 	_attack_target = marker
 
@@ -125,7 +132,7 @@ func _build_astar() -> void:
 
 ## 键盘方向移动（WASD/方向键，单格步进）。
 func move_direction(offset: Vector2i) -> void:
-	if _moving:
+	if frozen or _moving:
 		return
 	stop_attack()
 	request_move(grid_pos + offset)
@@ -144,6 +151,8 @@ func stop_attack() -> void:
 
 ## 请求移动到目标格。点击地图时调用。
 func request_move(target: Vector2i) -> void:
+	if frozen:
+		return
 	if target == grid_pos:
 		return
 	if _map_manager.is_colliding(target.x, target.y):
@@ -455,7 +464,7 @@ func _send_trade() -> void:
 ## 服务端会在应用 Stop 坐标前验证到 LootBag 的距离；浏览器端因此将路径终点
 ## 设为 Item/LootBag 的实际格，而不是相邻格。
 func move_to_pickup(marker: EntityMarker) -> void:
-	if marker.dead:
+	if frozen or marker.dead:
 		return
 	_pickup_target = marker
 
@@ -501,9 +510,14 @@ func is_moving() -> bool:
 
 ## 传送：取消当前移动并瞬移到新坐标（门/传送点触发）。
 func teleport(x: int, y: int) -> void:
+	# 立即冻结输入，防止传送瞬间残留的按键/点击用旧 grid_pos 发出移动包，
+	# 触发服务端永久性的 invalidateMovement（No-clip 检测）。
+	frozen = true
 	_path.clear()
 	_moving = false
 	_attack_target = null
+	_follow_target = null
+	_pickup_target = null
 	_step_timer = 0.0
 	if _move_tween:
 		_move_tween.kill()
@@ -511,3 +525,11 @@ func teleport(x: int, y: int) -> void:
 	grid_pos = Vector2i(x, y)
 	position = _map_manager.grid_to_world(x, y)
 	_visual.set_moving(false)
+
+	# 与浏览器端 setTimeout(() => teleporting = false, 500) 对应；
+	# 服务端也在 character.ts teleport() 里用 500ms 解除传送标记。
+	get_tree().create_timer(0.5).timeout.connect(_unfreeze)
+
+
+func _unfreeze() -> void:
+	frozen = false
