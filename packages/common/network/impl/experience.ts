@@ -9,6 +9,9 @@ export interface ExperiencePacketData {
     amount?: number;
     level?: number;
     skill?: Modules.Skills;
+    experience?: number;
+    nextExperience?: number;
+    prevExperience?: number;
 }
 
 export type ExperiencePacketCallback = (
