@@ -128,7 +128,10 @@ export default class Mob extends Character {
             mobTranslationsZh[this.key as keyof typeof mobTranslationsZh];
 
         this.name = translated?.name ?? data.name ?? this.name;
-        this.description = translated?.description ?? data.description ?? this.description;
+        this.description =
+            (translated?.description as string | string[] | undefined) ??
+            data.description ??
+            this.description;
         this.drops = data.drops || this.drops;
         this.dropTables = data.dropTables || this.dropTables;
         this.level = data.level || this.level;
