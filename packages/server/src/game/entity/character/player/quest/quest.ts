@@ -80,12 +80,12 @@ type ResourceCallback = (type: Modules.Skills, resourceType: string) => void;
 interface QuestTranslation {
     name?: string;
     description?: string;
-    rewards?: string[];
+    rewards?: readonly string[];
     stages?: {
         [id: number]: {
-            text?: string[];
-            completedText?: string[];
-            hasItemText?: string[];
+            text?: readonly string[];
+            completedText?: readonly string[];
+            hasItemText?: readonly string[];
         };
     };
 }
