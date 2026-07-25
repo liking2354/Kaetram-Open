@@ -72,14 +72,27 @@ func set_attack_range(attack_range: int) -> void:
 
 
 func _find_adjacent_walkable(target: Vector2i) -> Vector2i:
+	# 优先选择离玩家当前位置最近的可行走格，而不是固定顺序。
+	# 这样玩家会站在自己面向的那一侧攻击，而不是绕到怪物背后。
 	var dirs := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	var best_candidate := Vector2i(-1, -1)
+	var best_distance := 999
+
 	for dir: Vector2i in dirs:
 		var candidate := target + dir
 		if candidate == grid_pos:
 			return candidate
-		if not _map_manager.is_colliding(candidate.x, candidate.y):
-			return candidate
-	return Vector2i(-1, -1)
+
+		if _map_manager.is_colliding(candidate.x, candidate.y):
+			continue
+
+		# 计算曼哈顿距离，选择最近的
+		var distance := absi(candidate.x - grid_pos.x) + absi(candidate.y - grid_pos.y)
+		if distance < best_distance:
+			best_distance = distance
+			best_candidate = candidate
+
+	return best_candidate
 
 
 func _send_attack() -> void:
