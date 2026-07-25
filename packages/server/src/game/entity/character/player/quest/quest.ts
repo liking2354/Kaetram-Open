@@ -141,7 +141,7 @@ export default abstract class Quest {
 
         this.name = translated?.name ?? rawData.name;
         this.description = translated?.description ?? rawData.description;
-        this.rewards = translated?.rewards ?? rawData.rewards ?? [];
+        this.rewards = [...(translated?.rewards ?? rawData.rewards ?? [])];
         this.skillRequirements = rawData.skillRequirements || {};
         this.questRequirements = rawData.questRequirements || [];
         this.difficulty = rawData.difficulty || '';
@@ -181,8 +181,8 @@ export default abstract class Quest {
         field: 'text' | 'completedText' | 'hasItemText'
     ): string[] | undefined {
         let translatedStage = this.translatedStages?.[stageId];
-        if (translatedStage?.[field]) return translatedStage[field];
-        return this.stages[stageId]?.[field];
+        let result = translatedStage?.[field] ?? this.stages[stageId]?.[field];
+        return result ? [...result] : undefined;
     }
 
     /**
