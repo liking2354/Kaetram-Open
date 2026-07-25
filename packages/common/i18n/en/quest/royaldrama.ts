@@ -1,7 +1,8 @@
 export default {
     name: 'Royal Drama',
-    description: 'The king of Kaetram is in need of your help.|The king of Kaetram is missing and no one knows about his whereabouts. Perhaps you should go speak to the guards and see what they might not know about him.',
-    rewards: ["Access to the castle"],
+    description:
+        'The king of Kaetram is in need of your help.|The king of Kaetram is missing and no one knows about his whereabouts. Perhaps you should go speak to the guards and see what they might not know about him.',
+    rewards: ['Access to the castle'],
     stages: {
         0: {
             text: [
@@ -10,34 +11,34 @@ export default {
                 'and then we lost him.',
                 'We were walking over the local sewers',
                 'and I think he may have fallen off into the sewers.',
-                'We didn\'t notice until we got here, honest to god!',
-                'You should try searching the sewers and see if you can find any clues.',
+                "We didn't notice until we got here, honest to god!",
+                'You should try searching the sewers and see if you can find any clues.'
             ],
             completedText: [
                 'Please, you must help us find the king.',
-                'Look into the sewers and see if you can find any clues.',
-            ],
+                'Look into the sewers and see if you can find any clues.'
+            ]
         },
         1: {
             text: [
-                'No please don\'t hit me.',
-                'Listen I\'ll tell you everything I know about the king.',
+                "No please don't hit me.",
+                "Listen I'll tell you everything I know about the king.",
                 'I saw him fall into the sewers, and he went into one of these pipes.',
                 'I know there should be a way to get deeper into the sewers from here.',
-                'That\'s all I know I swear!',
+                "That's all I know I swear!"
             ],
             completedText: [
-                'I\'m telling you everything I know about the king!',
-                'Just look deeper into the sewer.',
-            ],
+                "I'm telling you everything I know about the king!",
+                'Just look deeper into the sewer.'
+            ]
         },
         2: {
             text: [
                 'Oh dear adventurer, thank you so much for finding me.',
-                'Those filthy guards threw me in the sewers and didn\'t look back.',
+                "Those filthy guards threw me in the sewers and didn't look back.",
                 'I will reward you greatly for your help.',
-                'Now I have to go back to the castle and get my affairs in order.',
-            ],
-        },
+                'Now I have to go back to the castle and get my affairs in order.'
+            ]
+        }
     }
 } as const;

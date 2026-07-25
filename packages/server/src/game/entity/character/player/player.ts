@@ -659,6 +659,11 @@ export default class Player extends Character {
         this.setPosition(x, y, false);
         this.world.cleanCombat(this);
 
+        // Reset movement invalidation flag after successful teleport.
+        // This prevents the player from being permanently locked out of movement
+        // after a no-clip detection triggers a teleport to the old position.
+        this.invalidateMovement = false;
+
         if (before) return;
 
         this.sendTeleportPacket(x, y, withAnimation);

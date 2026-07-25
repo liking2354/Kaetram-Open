@@ -1,7 +1,8 @@
 export default {
     name: 'Ancient Lands',
-    description: 'Discover the lands that lie beyond the great mountains.|A very spooky monument lies hidden in a peculiar icy place. You can find it by exploring the caves in the swamp lands. They may or may not be guarded by some ice golems or something, but you didn\'t hear that from me, I wouldn\'t possibly want to spoil anything for you.',
-    rewards: ["Snow potion", "Access to the mountains beyond"],
+    description:
+        "Discover the lands that lie beyond the great mountains.|A very spooky monument lies hidden in a peculiar icy place. You can find it by exploring the caves in the swamp lands. They may or may not be guarded by some ice golems or something, but you didn't hear that from me, I wouldn't possibly want to spoil anything for you.",
+    rewards: ['Snow potion', 'Access to the mountains beyond'],
     stages: {
         0: {
             text: [
@@ -13,18 +14,16 @@ export default {
                 'South of here lies a great maze, dark, cold, and full of perils.',
                 'You must bring back the ancient ice sword lost within.',
                 'In exchange, I will grant you access to the ancient lands.',
-                'As well as knowledge of the snow potions, necessary for your survival beyond.',
+                'As well as knowledge of the snow potions, necessary for your survival beyond.'
             ],
-            completedText: [
-                'Find the ancient ice sword!',
-            ],
+            completedText: ['Find the ancient ice sword!']
         },
         1: {
             hasItemText: [
                 'You have returned with the ancient ice sword?',
                 'I see, you have proven yourself worthy.',
-                'Take this knowledge of the snow potions, and the path shall be yours.',
-            ],
-        },
+                'Take this knowledge of the snow potions, and the path shall be yours.'
+            ]
+        }
     }
 } as const;

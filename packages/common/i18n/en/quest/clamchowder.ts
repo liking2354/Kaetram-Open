@@ -1,60 +1,55 @@
 export default {
     name: 'Clam Chowder',
-    description: 'Some human being needs your help in the ice world.|Someone, somewhere, I can\'t say where because I\'m spoiling what\'s upcoming in this game needs your help to make some clam chowder. You know, I feel like I\'m spoiling it already by telling you what the quest requires but knowing how these quests are setup should tell you that it may not just be about clam chowder.',
+    description:
+        "Some human being needs your help in the ice world.|Someone, somewhere, I can't say where because I'm spoiling what's upcoming in this game needs your help to make some clam chowder. You know, I feel like I'm spoiling it already by telling you what the quest requires but knowing how these quests are setup should tell you that it may not just be about clam chowder.",
     stages: {
         0: {
             text: [
                 'Oh hello, you look particularly capable of running some errands.',
-                'You see, I was trying to cook some clam chowder but I\'m missing the ingredients',
+                "You see, I was trying to cook some clam chowder but I'm missing the ingredients",
                 'primarily the clam meat.',
                 'Could you defeat some clams and bring me some meat?',
-                'Lets say 5 of them?',
+                'Lets say 5 of them?'
             ],
-            completedText: [
-                'Please bring me 5 clam meat.',
-            ],
+            completedText: ['Please bring me 5 clam meat.']
         },
         1: {
             completedText: [
                 'Please find out where my grandmother is.',
-                'If you ask some of the villagers you might find some information.',
+                'If you ask some of the villagers you might find some information.'
             ],
             hasItemText: [
                 'Oh no adventurer, I almost forgot!',
-                'I don\'t actually need the clam chowder.',
-                'So you\'ve probably heard this before but I\'m too lazy',
+                "I don't actually need the clam chowder.",
+                "So you've probably heard this before but I'm too lazy",
                 'to come up with a better lie.',
                 'Okay, so my grandmother is very sick and I need you',
                 'to find out where she is.',
                 'I was supposed to take care',
                 'of her but I really wanted to go to the ice beach.',
-                'I know one of the villagers might\'ve seen her recently.',
-            ],
+                "I know one of the villagers might've seen her recently."
+            ]
         },
         2: {
             text: [
                 'Oh hey there, how is your day going?',
-                'Oh you are looking for that girl\'s grandmother?',
-                'You know that\'s not actually her grandmother, she just likes',
+                "Oh you are looking for that girl's grandmother?",
+                "You know that's not actually her grandmother, she just likes",
                 'sending adventurers on redundant quests.',
                 'Regardless, I can tell you where she was last seen',
-                'if you bring me 2 clam chowders.',
+                'if you bring me 2 clam chowders.'
             ],
-            completedText: [
-                'Please bring me 2 clam chowders and I\'ll tell you what I know.',
-            ],
+            completedText: ["Please bring me 2 clam chowders and I'll tell you what I know."]
         },
         3: {
-            completedText: [
-                'You should probably check out the caves nearby.',
-            ],
+            completedText: ['You should probably check out the caves nearby.'],
             hasItemText: [
                 'Thank you so much, clam chowder is quite the delicacy around here.',
                 'Maybe it has something to do with the surplus of clams.',
-                'Anyway, I can tell you that I\'ve seen that old lady venture',
+                "Anyway, I can tell you that I've seen that old lady venture",
                 'into the ice forest in one of the caves trying to find mushrooms.',
-                'It\'s probably your best bet to check out the caves nearby.',
-            ],
+                "It's probably your best bet to check out the caves nearby."
+            ]
         },
         4: {
             text: [
@@ -62,30 +57,28 @@ export default {
                 'I am not moving from here, let me just enjoy my last days.',
                 'Unless of course you bring me 2 hot bowls of clam chowder.',
                 'But even then I might not actually wanna go.',
-                'That granddaughter of mine doesn\'t care about me.',
-                'Why is it such a recurring theme in this game?',
+                "That granddaughter of mine doesn't care about me.",
+                'Why is it such a recurring theme in this game?'
             ],
             completedText: [
                 'I might sorta possibly potentially move if you bring me',
-                '2 hot bowls of clam chowder.',
-            ],
+                '2 hot bowls of clam chowder.'
+            ]
         },
         5: {
-            completedText: [
-                'Tell that granddaughter of mine that I am very hurt.',
-            ],
+            completedText: ['Tell that granddaughter of mine that I am very hurt.'],
             hasItemText: [
                 'Oh my, this is delicious!',
-                'I guess I\'ll get out of here.',
-                'Tell that granddaughter of mine that I am very hurt.',
-            ],
+                "I guess I'll get out of here.",
+                'Tell that granddaughter of mine that I am very hurt.'
+            ]
         },
         6: {
             text: [
-                'Oh my, I really didn\'t expect to see you again.',
-                'Oh you even found her? That\'s... great!',
-                'Here is a small reward for your troubles.',
-            ],
-        },
+                "Oh my, I really didn't expect to see you again.",
+                "Oh you even found her? That's... great!",
+                'Here is a small reward for your troubles.'
+            ]
+        }
     }
 } as const;

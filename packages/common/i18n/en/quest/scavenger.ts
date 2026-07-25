@@ -30,7 +30,7 @@ export default {
         },
         2: {
             hasItemText: [
-                'Thank you so much young one. You\'re so helpful.',
+                "Thank you so much young one. You're so helpful.",
                 'Unlike that granddaughter of mine.',
                 'Here, take this gold as a reward for your troubles.'
             ]
