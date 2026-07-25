@@ -191,6 +191,20 @@ export default class Skills {
             );
 
         this.player.send(new SkillPacket(Opcodes.Skill.Update, this.skills[type].serialize(true)));
+
+        // Send an Experience.Sync packet every time experience is gained so the client
+        // can update the experience bar in real-time. This ensures the character panel
+        // shows the latest experience value without waiting for a level up.
+        let totalExperience = this.player.getTotalExperience();
+        this.player.send(
+            new ExperiencePacket(Opcodes.Experience.Sync, {
+                instance: this.player.instance,
+                level: this.player.level,
+                experience: totalExperience,
+                nextExperience: Formulas.nextExp(totalExperience),
+                prevExperience: Formulas.prevExp(totalExperience)
+            })
+        );
     }
 
     /**
