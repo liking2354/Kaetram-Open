@@ -18,7 +18,7 @@ interface RawNPCData {
 
 interface NPCTranslation {
     name?: string;
-    text?: string[];
+    text?: readonly string[];
 }
 
 export default class NPC extends Entity {
