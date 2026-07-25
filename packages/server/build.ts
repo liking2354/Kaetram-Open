@@ -9,6 +9,9 @@ await esbuild.build({
     format: 'esm',
     platform: 'node',
     external: ['uws', 'discord.js'],
+    // Disable tree shaking to prevent QUEST_TRANSLATIONS from being removed.
+    // The translation map is accessed via dynamic key lookup which esbuild cannot analyze.
+    treeShaking: false,
     banner: {
         js: `
             import { createRequire as topLevelCreateRequire } from 'module';
