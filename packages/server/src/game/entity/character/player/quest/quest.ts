@@ -3,7 +3,54 @@ import Item from '../../../objects/item';
 import log from '@kaetram/common/util/log';
 import Utils from '@kaetram/common/util/utils';
 import { Modules } from '@kaetram/common/network';
-import { t } from '@kaetram/common/i18n';
+// Preload all quest translations for the current locale.
+// Using static imports because dynamic require() is not available in ESM.
+import ancientlandsZh from '@kaetram/common/i18n/zh/quest/ancientlands';
+import anvilsechoesZh from '@kaetram/common/i18n/zh/quest/anvilsechoes';
+import artsandcraftsZh from '@kaetram/common/i18n/zh/quest/artsandcrafts';
+import clamchowderZh from '@kaetram/common/i18n/zh/quest/clamchowder';
+import codersfallacyZh from '@kaetram/common/i18n/zh/quest/codersfallacy';
+import codersglitchZh from '@kaetram/common/i18n/zh/quest/codersglitch';
+import codersglitch2Zh from '@kaetram/common/i18n/zh/quest/codersglitch2';
+import desertquestZh from '@kaetram/common/i18n/zh/quest/desertquest';
+import evilsantaZh from '@kaetram/common/i18n/zh/quest/evilsanta';
+import forestingZh from '@kaetram/common/i18n/zh/quest/foresting';
+import herbalistdesperationZh from '@kaetram/common/i18n/zh/quest/herbalistdesperation';
+import minersquestZh from '@kaetram/common/i18n/zh/quest/minersquest';
+import minersquest2Zh from '@kaetram/common/i18n/zh/quest/minersquest2';
+import ricksrollZh from '@kaetram/common/i18n/zh/quest/ricksroll';
+import royaldramaZh from '@kaetram/common/i18n/zh/quest/royaldrama';
+import royalpetZh from '@kaetram/common/i18n/zh/quest/royalpet';
+import scavengerZh from '@kaetram/common/i18n/zh/quest/scavenger';
+import scientistspotionZh from '@kaetram/common/i18n/zh/quest/scientistspotion';
+import seaactivitiesZh from '@kaetram/common/i18n/zh/quest/seaactivities';
+import sorceryZh from '@kaetram/common/i18n/zh/quest/sorcery';
+import tutorialZh from '@kaetram/common/i18n/zh/quest/tutorial';
+
+// Translation map for quick lookup.
+const QUEST_TRANSLATIONS: { [key: string]: QuestTranslation } = {
+    ancientlands: ancientlandsZh,
+    anvilsechoes: anvilsechoesZh,
+    artsandcrafts: artsandcraftsZh,
+    clamchowder: clamchowderZh,
+    codersfallacy: codersfallacyZh,
+    codersglitch: codersglitchZh,
+    codersglitch2: codersglitch2Zh,
+    desertquest: desertquestZh,
+    evilsanta: evilsantaZh,
+    foresting: forestingZh,
+    herbalistdesperation: herbalistdesperationZh,
+    minersquest: minersquestZh,
+    minersquest2: minersquest2Zh,
+    ricksroll: ricksrollZh,
+    royaldrama: royaldramaZh,
+    royalpet: royalpetZh,
+    scavenger: scavengerZh,
+    scientistspotion: scientistspotionZh,
+    seaactivities: seaactivitiesZh,
+    sorcery: sorceryZh,
+    tutorial: tutorialZh
+};
 
 import type Player from '../player';
 import type Mob from '../../mob/mob';
@@ -120,22 +167,9 @@ export default abstract class Quest {
      * Returns undefined if no translation is available.
      */
     private loadTranslation(): QuestTranslation | undefined {
-        try {
-            // Try to load the translation module for this quest.
-            // Using dynamic import path pattern to avoid eslint no-var-requires.
-            let translation = this.loadTranslationModule();
-            return translation.default ?? translation;
-        } catch {
-            // Translation file doesn't exist, fallback to raw data.
-            return undefined;
-        }
-    }
-
-    private loadTranslationModule(): { [key: string]: unknown } {
-        // This function is a placeholder that will be replaced by a proper dynamic import.
-        // For now, we use a simple require with eslint disable.
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        return require(`@kaetram/common/i18n/${t.language}/quest/${this.key}`);
+        // Use the preloaded translation map instead of dynamic require().
+        // This works in ESM environments where require() is not available.
+        return QUEST_TRANSLATIONS[this.key];
     }
 
     /**
