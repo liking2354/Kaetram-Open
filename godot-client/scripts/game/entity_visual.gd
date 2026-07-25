@@ -399,6 +399,16 @@ func _setup_rank_crown(rank: int) -> void:
 
 ## 重建外观图层（装备变化时调用）。
 func rebuild(data: Dictionary) -> void:
+	# 保存当前动画状态，重建后恢复，避免攻击动画中断。
+	var current_animation: StringName = ""
+	var current_moving := moving
+	var current_orientation := orientation
+
+	if not _layers.is_empty() and _layers[0] is AnimatedSprite2D:
+		var first_layer: AnimatedSprite2D = _layers[0]
+		if first_layer.is_playing():
+			current_animation = first_layer.animation
+
 	for layer: AnimatedSprite2D in _layers:
 		layer.queue_free()
 	_layers.clear()
@@ -414,6 +424,14 @@ func rebuild(data: Dictionary) -> void:
 		_exclamation_label = null
 
 	setup(data)
+
+	# 恢复之前的动画状态。
+	if not current_animation.is_empty():
+		for layer: AnimatedSprite2D in _layers:
+			if layer.sprite_frames.has_animation(current_animation):
+				layer.play(current_animation)
+	moving = current_moving
+	orientation = current_orientation
 
 
 ## 设置名字标签可见性（设置面板"显示名字"开关）。
