@@ -843,8 +843,15 @@ func _handle_experience(args: Array) -> void:
 	match opcode:
 		Opcodes.Experience.SYNC:
 			if instance == player_instance and not player_data.is_empty():
+				# 同步更新等级和经验字段，确保角色面板显示最新数据。
 				if info.has("level"):
 					player_data["level"] = int(info["level"])
+				if info.has("experience"):
+					player_data["experience"] = int(info["experience"])
+				if info.has("nextExperience"):
+					player_data["nextExperience"] = int(info["nextExperience"])
+				if info.has("prevExperience"):
+					player_data["prevExperience"] = int(info["prevExperience"])
 				experience_updated.emit()
 		Opcodes.Experience.SKILL:
 			experience_updated.emit()
