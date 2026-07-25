@@ -5,6 +5,7 @@ import log from '@kaetram/common/util/log';
 import Utils from '@kaetram/common/util/utils';
 import PluginIndex from '@kaetram/server/data/plugins/items';
 import { Modules } from '@kaetram/common/network';
+import itemTranslationsZh from '@kaetram/common/i18n/zh/item/items';
 
 import type Player from '../character/player/player';
 import type { EntityData } from '@kaetram/common/types/entity';
@@ -13,6 +14,11 @@ import type { Bonuses, Enchantments, ItemData, Light, Stats } from '@kaetram/com
 
 interface RawData {
     [key: string]: ItemData;
+}
+
+interface ItemTranslation {
+    name?: string;
+    description?: string;
 }
 
 export default class Item extends Entity {
@@ -115,7 +121,12 @@ export default class Item extends Entity {
         // Set all the item data (set defaults if value doesn't exist).
         this.itemType = this.data.type;
         this.key = this.data.spriteName || this.key;
-        this.name = this.data.name;
+
+        // Load translated item data if available.
+        let translated: ItemTranslation | undefined =
+            itemTranslationsZh[key as keyof typeof itemTranslationsZh];
+
+        this.name = translated?.name ?? this.data.name;
         this.stackable = this.data.stackable || this.stackable;
         this.edible = this.data.edible || this.edible;
         this.interactable = this.data.interactable || this.interactable;

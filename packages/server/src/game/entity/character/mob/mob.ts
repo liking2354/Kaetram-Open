@@ -13,6 +13,7 @@ import Utils from '@kaetram/common/util/utils';
 import { Modules, Opcodes } from '@kaetram/common/network';
 import { HealPacket, MovementPacket, TeleportPacket } from '@kaetram/common/network/impl';
 import { SpecialEntityTypes } from '@kaetram/common/network/modules';
+import mobTranslationsZh from '@kaetram/common/i18n/zh/mob/mobs';
 
 import type Area from '../../../map/areas/area';
 import type Areas from '../../../map/areas/areas';
@@ -33,6 +34,11 @@ import type { EntityData, EntityDisplayInfo } from '@kaetram/common/types/entity
 interface ItemDrop {
     key: string;
     count: number;
+}
+
+interface MobTranslation {
+    name?: string;
+    description?: string;
 }
 
 export default class Mob extends Character {
@@ -117,8 +123,12 @@ export default class Mob extends Character {
     private loadData(data: MobData): void {
         if (data.hitPoints) this.hitPoints.updateHitPoints(data.hitPoints);
 
-        this.name = data.name || this.name;
-        this.description = data.description || this.description;
+        // Load translated mob data if available.
+        let translated: MobTranslation | undefined =
+            mobTranslationsZh[this.key as keyof typeof mobTranslationsZh];
+
+        this.name = translated?.name ?? data.name ?? this.name;
+        this.description = translated?.description ?? data.description ?? this.description;
         this.drops = data.drops || this.drops;
         this.dropTables = data.dropTables || this.dropTables;
         this.level = data.level || this.level;

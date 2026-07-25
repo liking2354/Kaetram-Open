@@ -1,8 +1,13 @@
 import Entity from '../../entity';
 
 import { Modules } from '@kaetram/common/network';
+import resourceTranslationsZh from '@kaetram/common/i18n/zh/resource/foraging';
 
 import type { ResourceEntityData, ResourceInfo } from '@kaetram/common/types/resource';
+
+interface ResourceTranslation {
+    name?: string;
+}
 
 export default abstract class Resource extends Entity {
     // Amount of time it takes for the resource to respawn.
@@ -94,7 +99,11 @@ export default abstract class Resource extends Entity {
     protected setData(data: ResourceInfo): void {
         this.data = data;
 
-        this.name = data.name ?? this.name;
+        // Load translated resource name if available.
+        let translated: ResourceTranslation | undefined =
+            resourceTranslationsZh[this.key as keyof typeof resourceTranslationsZh];
+
+        this.name = translated?.name ?? data.name ?? this.name;
     }
 
     /**

@@ -6,6 +6,7 @@ import Utils from '@kaetram/common/util/utils';
 import { NPCPacket } from '@kaetram/common/network/impl';
 import { Modules, Opcodes } from '@kaetram/common/network';
 import { SpecialEntityTypes } from '@kaetram/common/network/modules';
+import npcTranslationsZh from '@kaetram/common/i18n/zh/npc/npcs';
 
 import type Player from '../character/player/player';
 import type { NPCData } from '@kaetram/common/network/impl/npc';
@@ -13,6 +14,11 @@ import type { EntityDisplayInfo } from '@kaetram/common/types/entity';
 
 interface RawNPCData {
     [key: string]: NPCData;
+}
+
+interface NPCTranslation {
+    name?: string;
+    text?: string[];
 }
 
 export default class NPC extends Entity {
@@ -35,9 +41,13 @@ export default class NPC extends Entity {
             return;
         }
 
-        // Load default NPC data.
-        this.name = this.data.name!;
-        this.text = this.data.text || this.text;
+        // Load translated NPC data if available.
+        let translated: NPCTranslation | undefined =
+            npcTranslationsZh[key as keyof typeof npcTranslationsZh];
+
+        // Load default NPC data with translation fallback.
+        this.name = translated?.name ?? this.data.name!;
+        this.text = translated?.text ?? this.data.text ?? this.text;
         this.role = this.data.role!;
         this.store = this.data.store || '';
     }
