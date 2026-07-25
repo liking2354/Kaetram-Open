@@ -115,10 +115,14 @@ export default class Skills {
         this.player.level = this.getCombatLevel();
 
         // Synchronize the player's level packet.
+        let totalExperience = this.player.getTotalExperience();
         this.player.send(
             new ExperiencePacket(Opcodes.Experience.Sync, {
                 instance: this.player.instance,
-                level: this.player.level
+                level: this.player.level,
+                experience: totalExperience,
+                nextExperience: Formulas.nextExp(totalExperience),
+                prevExperience: Formulas.prevExp(totalExperience)
             })
         );
 
