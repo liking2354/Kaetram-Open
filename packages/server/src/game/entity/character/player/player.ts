@@ -2428,7 +2428,13 @@ export default class Player extends Character {
         // Include equipment only when necessary.
         if (withEquipment) data.equipments = this.equipment.serialize(true).equipments;
 
-        if (withExperience) data.experience = this.getTotalExperience();
+        if (withExperience) {
+            data.experience = this.getTotalExperience();
+            // Calculate next and previous experience thresholds for the level bar.
+            let totalExp = this.getTotalExperience();
+            data.nextExperience = Formulas.nextExp(totalExp);
+            data.prevExperience = Formulas.prevExp(totalExp);
+        }
 
         if (withMana) {
             data.mana = this.mana.getMana();

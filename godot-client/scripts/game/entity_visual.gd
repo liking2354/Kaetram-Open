@@ -50,18 +50,28 @@ func play_attack() -> void:
 		return
 
 	var dir := _direction_suffix()
-	for layer: AnimatedSprite2D in _layers:
-		var candidate := "atk_%s" % dir
-		if not layer.sprite_frames.has_animation(candidate):
-			continue
-		layer.play(candidate)
+	var anim := "atk_%s" % dir
 
-	# 攻击动画播完后恢复当前状态动画。
-	# 连续快速攻击（如连击）可能在上一次的 ONE_SHOT 回调触发前再次调用本函数，
-	# 因此先判断是否已连接，避免 "Signal is already connected" 报错。
+	# 检查是否有攻击动画，如果没有则直接返回。
+	var has_attack_anim := false
 	for layer: AnimatedSprite2D in _layers:
-		if not layer.is_playing():
+		if layer.sprite_frames.has_animation(anim):
+			has_attack_anim = true
+			break
+
+	if not has_attack_anim:
+		return
+
+	for layer: AnimatedSprite2D in _layers:
+		if not layer.sprite_frames.has_animation(anim):
 			continue
+
+		# 临时禁用循环，让攻击动画只播放一次。
+		layer.sprite_frames.set_animation_loop(anim, false)
+		layer.play(anim)
+
+		# 连接 animation_finished 信号，动画结束后恢复当前状态动画。
+		# 使用 CONNECT_ONE_SHOT 确保只触发一次。
 		if not layer.animation_finished.is_connected(_play_current):
 			layer.animation_finished.connect(_play_current, CONNECT_ONE_SHOT)
 		break
