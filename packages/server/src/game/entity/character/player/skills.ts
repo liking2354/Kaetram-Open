@@ -19,7 +19,12 @@ import Alchemy from './skill/impl/alchemy';
 import Formulas from '../../../../info/formulas';
 
 import { Modules, Opcodes } from '@kaetram/common/network';
-import { ExperiencePacket, PointsPacket, SkillPacket } from '@kaetram/common/network/impl';
+import {
+    ExperiencePacket,
+    PointsPacket,
+    SkillPacket,
+    SyncPacket
+} from '@kaetram/common/network/impl';
 
 import type Player from './player';
 import type Skill from './skill/skill';
@@ -205,6 +210,11 @@ export default class Skills {
                 prevExperience: Formulas.prevExp(totalExperience)
             })
         );
+
+        // Send a SyncPacket to update the player's level above their head in real-time.
+        // This ensures the level displayed to other players (and the local player) is
+        // always up-to-date, not just when a level up occurs.
+        this.player.sendToRegions(new SyncPacket(this.player.serialize(true)), true);
     }
 
     /**
