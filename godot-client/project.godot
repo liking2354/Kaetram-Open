@@ -29,6 +29,10 @@ window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/default_font="res://assets/fonts/PingFang.ttc"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
