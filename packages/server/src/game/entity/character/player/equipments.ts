@@ -58,7 +58,7 @@ export default class Equipments {
     public totalBonuses: Bonuses = Utils.getEmptyBonuses();
 
     private loadCallback?: () => void;
-    private equipCallback?: (equipment: Equipment) => void;
+    private equipCallback?: (equipment: Equipment, fromIndex?: number) => void;
     private unequipCallback?: (type: Modules.Equipment, count?: number) => void;
     private attackStyleCallback?: (style: Modules.AttackStyle) => void;
 
@@ -145,7 +145,7 @@ export default class Equipments {
             equipment.update(item, this.player.getLastAttackStyle(item.weaponType));
         else equipment.update(item);
 
-        this.equipCallback?.(equipment);
+        this.equipCallback?.(equipment, fromIndex);
 
         this.calculateStats();
     }
@@ -404,7 +404,7 @@ export default class Equipments {
      * @param callback The equipment slot that we just updated.
      */
 
-    public onEquip(callback: (equipment: Equipment) => void): void {
+    public onEquip(callback: (equipment: Equipment, fromIndex?: number) => void): void {
         this.equipCallback = callback;
     }
 

@@ -398,12 +398,24 @@ export default class Handler {
      * @param equipment The equipment slot and the data contained.
      */
 
-    private handleEquip(equipment: Equipment): void {
+    private handleEquip(equipment: Equipment, fromIndex?: number): void {
         this.player.send(
             new EquipmentPacket(Opcodes.Equipment.Equip, {
                 data: equipment.serialize(true)
             })
         );
+
+        // If the item was equipped from the inventory, send a Container.Remove packet
+        // to update the client's inventory display and remove the item from the slot.
+        if (fromIndex !== undefined && fromIndex >= 0) {
+            let slot = this.player.inventory.get(fromIndex);
+            this.player.send(
+                new ContainerPacket(Opcodes.Container.Remove, {
+                    type: Modules.ContainerType.Inventory,
+                    slot: slot.serialize(true)
+                })
+            );
+        }
 
         // Sync to nearby players.
         this.player.sync();
